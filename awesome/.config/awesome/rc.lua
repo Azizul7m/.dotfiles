@@ -353,7 +353,7 @@ globalkeys = gears.table.join(
             {description = "run dmenu", group = "launcher"}),
 
     awful.key({ modkey },            "w",     function () 
-    awful.util.spawn('rofi -show window')  end,
+    awful.util.spawn('rofi -show window -font "DejaVu Sans 10" -show-icons')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
@@ -374,7 +374,7 @@ globalkeys = gears.table.join(
             {description = " Qute Browser", group = "launcher"}),
 
     -- Menubar
-    awful.key({ modkey }, "p", function() awful.util.spawn("rofi -show drun") end,
+    awful.key({ modkey }, "p", function() awful.util.spawn("rofi -modi drun,run -show drun -font 'DejaVu Sans 10' -show-icons") end,
             {description = "Rofi all applications", group = "launcher"})
 )
 
@@ -539,9 +539,9 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+     --Set Firefox to always map on the tag named "2" on screen 1.
+     { rule = { class = "Firefox" },
+       properties = { screen = 1, tag = "2" }},
 }
 -- }}}
 
@@ -577,7 +577,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("compton")
-awful.spawn.with_shell("telegram-desktop")
+awful.spawn.with_shell("Telegram")
 awful.spawn.with_shell("skypeforlinux")
 -- awful.spawn.with_shell("kmix")
 

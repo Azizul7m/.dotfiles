@@ -11,7 +11,7 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Hack 8"
+theme.font          = "Hack 7"
 
 theme.bg_normal     = "#041A1D"
 theme.bg_focus      = "#081F2F"
