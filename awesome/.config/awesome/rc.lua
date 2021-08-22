@@ -59,7 +59,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -220,10 +220,10 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
-        bg = beautiful.bg_normal .. "55"
+        bg = beautiful.bg_normal .. "75"
     }
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "55" })
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "75" })
     -- Add widgets to the wibox
 -- =======================================================================================================================
     s.mywibox:setup {
@@ -248,7 +248,7 @@ awful.screen.connect_for_each_screen(function(s)
 		ram_widget(),
 		cpu_widget(),
             -- wibox.widget.systray(),
-            (wibox.layout.margin(wibox.widget.systray(), 3, 3, 3, 3)),
+            (wibox.layout.margin(wibox.widget.systray(), 6, 6, 3, 3)),
             mytextclock,
         },
     }
@@ -358,7 +358,7 @@ globalkeys = gears.table.join(
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('nemo')  end,
+    awful.util.spawn('thunar')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "k",     function () 
@@ -372,7 +372,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, "Shift"  },            "b",     function () 
     awful.util.spawn('qutebrowser')  end,
-            {description = " Qute Browser", group = "launcher"}),
+            {description = " QuteBrowser", group = "launcher"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn("rofi -modi drun,run -show drun -font 'DejaVu Sans 10' -show-icons") end,
@@ -540,9 +540,9 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
 
-     --Set Firefox to always map on the tag named "2" on screen 1.
+     --Set Firefox to always map on the tag named "3" on screen 1.
      { rule = { class = "Firefox" },
-       properties = { screen = 1, tag = "2" }},
+       properties = { screen = 1, tag = "3" }},
 }
 -- }}}
 

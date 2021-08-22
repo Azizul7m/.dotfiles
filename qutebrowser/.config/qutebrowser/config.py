@@ -68,11 +68,11 @@ c.colors.tabs.even.fg = "#666666"
 c.colors.tabs.odd.fg = c.colors.tabs.even.fg
 
 # The height of the completion, in px or as percentage of the window.
-c.completion.height = "20%"
+c.completion.height = "30%"
 
 # Move on to the next part when there's only one possible completion
 # left.
-c.completion.quick = False
+c.completion.quick = True
 
 # When to show the autocompletion window.
 # Valid values:
@@ -115,7 +115,7 @@ c.content.ssl_strict = True
 
 # Prompt the user for the download location. If set to false,
 # `downloads.location.directory` will be used.
-c.downloads.location.prompt = False
+c.downloads.location.prompt = True
 
 # The editor (and arguments) to use for the `open-editor` command. `{}`
 # gets replaced by the filename of the file to be edited.
@@ -153,8 +153,6 @@ c.fonts.prompts = monospace
 # Font used in the statusbar.
 c.fonts.statusbar = monospace
 
-# Font used in the tab bar.
-c.fonts.tabs = monospace
 
 # Font used for the hints.
 c.fonts.hints = "bold 10px 'DejaVu Sans Mono'"
@@ -231,5 +229,5 @@ c.url.start_pages = "https://google.com/"
 #   * `{host}`: The host of the current web page.
 #   * `{backend}`: Either ''webkit'' or ''webengine''
 #   * `{private}` : Indicates when private mode is enabled.
-c.window.title_format = "{private}{perc}{title}{title_sep}qutebrowser"
+#c.window.title_format = "{private}{perc}{title}{title_sep}qutebrowser"
 

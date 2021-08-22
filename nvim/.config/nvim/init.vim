@@ -1,26 +1,16 @@
 
 
 """Plug
-call plug#begin('~/.vim/plugged')
-
-Plug 'prettier/vim-prettier', { 'do': 'n install' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'npm install'}
-Plug 'mxw/vim-jsx'
+call plug#begin('~/.vim/pluggedNvim')
 
 "themes staff
 Plug 'joshdick/onedark.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'frazrepo/vim-rainbow'
 
 "Utils
-Plug 'ap/vim-css-color'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'liuchengxu/vim-which-key'
-
 "PopUp window (Suggestions)
-Plug 'vim-scripts/AutoComplPop'
-call plug#end()
 
+call plug#end()
 """end Plug
 
 "core setting by azizul Islam
@@ -54,7 +44,7 @@ set emo
 set completeopt+=menuone,noinsert
 "Utils
 set dictionary+=/usr/share/dict/words
-set complete+=k/usr/share/dict/words
+set complete+=kspell
 set dict= "dictionary
 set sps=best
 set icon
@@ -68,50 +58,11 @@ colorscheme onedark
 "Random staff
 "----------------------------------------------------------------
 setlocal omnifunc=syntaxcomplete#Complete
-let g:mucomplete#enable_auto_at_startup = 1
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
-
-" Preview window on the upper side of the window with 40% height,
-" hidden by default, ctrl-/ to toggle
-let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-
-" Empty value to disable preview window altogether
-let g:fzf_preview_window = []
-nmap <leader>f :FZF<CR>
-
-" vim-prettier
-let g:prettier#quickfix_enabled = 1
-let g:prettier#quickfix_auto_focus = 1
-run prettier on save
-let g:prettier#autoformat = 1
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-"
-
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
-
-let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
-    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
-    \ ]
-
-let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
- 
 
 "KeyBinding By Azizul7m
 "-----------------------------------------------------------------"

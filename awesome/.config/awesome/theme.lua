@@ -11,9 +11,9 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Hack 7"
+theme.font          = "Ubuntu Mono 8"
 
-theme.bg_normal     = "#041A1D"
+theme.bg_normal     = "#3D4348"
 theme.bg_focus      = "#081F2F"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
@@ -25,9 +25,9 @@ theme.fg_urgent     = "#FFFFFF"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#FF8F00"
-theme.border_focus  = "#FFCC00"
+theme.border_width  = dpi(1.4)
+theme.border_normal = "#555354"
+theme.border_focus  = "#818D8B"
 theme.border_marked = "#91231C"
 
 -- There are other variable sets
@@ -44,7 +44,7 @@ theme.border_marked = "#91231C"
 --theme.taglist_bg_focus = "#FF0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
