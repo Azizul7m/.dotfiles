@@ -13,19 +13,21 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+
+--widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local hotkeys_popup = require("awful.hotkeys_popup")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
+local spotify_shell = require("awesome-wm-widgets.spotify-shell.spotify-shell")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 require("collision")()
--- Load Debian menu entries
---local debian = require("debian.menu")
---local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -101,26 +103,7 @@ myawesomemenu = {
     { "quit", function() awesome.quit() end },
 }
 
---==============================================================================
---local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
---local menu_terminal = { "open terminal", terminal }
 
---if has_fdo then
-    --mymainmenu = freedesktop.menu.build({
-        --before = { menu_awesome },
-        --after =  { menu_terminal }
-    --})
---else
-    --mymainmenu = awful.menu({
-        --items = {
-                --menu_awesome,
-                --{ "Debian", debian.menu.Debian_menu.Debian },
-                --menu_terminal,
-                --}
-    --})
---end
-
---==============================================================================
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                     menu = mymainmenu })
@@ -239,14 +222,18 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
-		net_speed_widget(),
+        spotify_widget({
+           play_icon = '/usr/share/icons/Dracula/apps/scalable/spotify.svg',
+           pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
+        }),
+		    net_speed_widget(),
         batteryarc_widget({
             show_current_level = true,
-            arc_thickness = 2,
+            arc_thickness = 1,
         }),
         volume_widget(),
-		ram_widget(),
-		cpu_widget(),
+		    ram_widget(),
+		    cpu_widget(),
             -- wibox.widget.systray(),
             (wibox.layout.margin(wibox.widget.systray(), 6, 6, 3, 3)),
             mytextclock,
@@ -349,16 +336,19 @@ globalkeys = gears.table.join(
             {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () 
-    awful.util.spawn('dmenu_run')  end,
-            {description = "run dmenu", group = "launcher"}),
+    awful.key({ modkey },            "o",     function () 
+    awful.util.spawn('dmenu_run -h 30 -c -fn Hack')  end,
+            {description = "run dmenu ", group = "launcher"}),
+    awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
+        {description = "spotify shell", group = "music"}),
+
 
     awful.key({ modkey },            "w",     function () 
     awful.util.spawn('rofi -show window -font "DejaVu Sans 10" -show-icons')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('thunar')  end,
+    awful.util.spawn('pcmanfm')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "k",     function () 
@@ -576,7 +566,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --autostart
 
-awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("wallpaper")
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("Telegram")
 awful.spawn.with_shell("skypeforlinux")

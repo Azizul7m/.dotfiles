@@ -203,18 +203,18 @@ colors:
   normal:
     black:   '#282c34'
     red:     '#e06c75'
-    green:   '#98c379'
+    green:   '#8ffa68'
     yellow:  '#e5c07b'
-    blue:    '#61afef'
+    blue:    '#00bbff'
     magenta: '#c678dd'
-    cyan:    '#56b6c2'
+    cyan:    '#00caca'
     white:   '#ffffff'
 
   # Bright colors
   #bright:
   #  black:   '#666666'
   #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
+  #  green:   '#8ffa68'
   #  yellow:  '#e7c547'
   #  blue:    '#7aa6da'
   #  magenta: '#c397d8'
@@ -312,7 +312,7 @@ dynamic_title: true
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -357,7 +357,7 @@ mouse:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
   #url:
     # URL launcher
@@ -403,8 +403,8 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-#mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
 #
@@ -540,9 +540,9 @@ mouse:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
-#key_bindings:
-  #- { key: Paste,                                action: Paste          }
-  #- { key: Copy,                                 action: Copy           }
+key_bindings:
+  - { key: Paste,                                action: Paste          }
+  - { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #-{ key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }

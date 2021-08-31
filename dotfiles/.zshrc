@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/home/anower/.config/composer/vendor/bin:/home/anower/.local/bin:/home/linuxbrew/.linuxbrew/bin:~/.emacs.d/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/anower/.config/composer/vendor/bin:/home/anower/.local/bin:/home/linuxbrew/.linuxbrew/bin:~/.emacs.d/bin:/home/anower/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/anower/.oh-my-zsh"
@@ -105,5 +105,6 @@ source $ZSH/oh-my-zsh.sh
 alias lf="la | fzf"
 alias ff="fzf"
 alias em="emacs"
+alias alf="apt list | fzf"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
