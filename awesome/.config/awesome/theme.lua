@@ -30,6 +30,7 @@ theme.border_normal = "#555354"
 theme.border_focus  = "#818D8B"
 theme.border_marked = "#91231C"
 
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -65,10 +66,17 @@ theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(12)
 theme.menu_width  = dpi(100)
 
+
+
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+
+local widgets = {
+    wirelessStatus = require("widgets/wirelessStatus"),
+}
+
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"

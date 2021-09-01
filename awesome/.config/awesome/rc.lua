@@ -337,7 +337,7 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "o",     function () 
-    awful.util.spawn('dmenu_run -h 30 -c -fn Hack')  end,
+    awful.util.spawn('dmenu_run -h 15')  end,
             {description = "run dmenu ", group = "launcher"}),
     awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
         {description = "spotify shell", group = "music"}),
@@ -479,6 +479,11 @@ clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
     end)
 )
+
+
+
+
+
 
 -- Set keys
 root.keys(globalkeys)
