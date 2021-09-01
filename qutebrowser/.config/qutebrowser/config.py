@@ -53,7 +53,7 @@ dracula.draw.blood(c, {
 })
 
 # Always restore open sites when qutebrowser is reopened.
-c.auto_save.session = True
+c.auto_save.session = false
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
