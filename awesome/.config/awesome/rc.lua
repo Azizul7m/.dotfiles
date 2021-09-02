@@ -1,6 +1,7 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
+local vicious = require("vicious")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -232,8 +233,8 @@ awful.screen.connect_for_each_screen(function(s)
             arc_thickness = 1,
         }),
         volume_widget(),
-		    ram_widget(),
-		    cpu_widget(),
+        ram_widget(),
+        cpu_widget(),
             -- wibox.widget.systray(),
             (wibox.layout.margin(wibox.widget.systray(), 6, 6, 3, 3)),
             mytextclock,
@@ -339,12 +340,17 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "o",     function () 
     awful.util.spawn('dmenu_run -h 15')  end,
             {description = "run dmenu ", group = "launcher"}),
+
     awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
         {description = "spotify shell", group = "music"}),
 
 
     awful.key({ modkey },            "w",     function () 
     awful.util.spawn('rofi -show window -font "DejaVu Sans 10" -show-icons')  end,
+            {description = "Active Windows", group = "launcher"}),
+
+    awful.key({ modkey, "Shift" },            "f",     function () 
+    awful.util.spawn('dws')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
