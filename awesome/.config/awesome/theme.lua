@@ -31,6 +31,15 @@ theme.border_focus  = "#818D8B"
 theme.border_marked = "#91231C"
 
 
+
+
+theme.taglist_fg_focus    = "#3992af"
+theme.taglist_fg_occupied = "#164b5d"
+theme.taglist_fg_urgent   = "#ED7572"
+theme.taglist_spacing     = 5
+theme.taglist_font        = "awesomewm 8"
+
+
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:

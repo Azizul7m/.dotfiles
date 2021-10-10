@@ -15,6 +15,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+
+--User modules
+local redflat = require('redflat')
+
+
 --widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
@@ -180,7 +185,9 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "", "", "", "", "","﬏", "", "", "CODE"}, s, awful.layout.layouts[1])
+   awful.tag({ "", "", "", "", "","﬏", "", "", "C"}, s, awful.layout.layouts[1])
+  --  awful.tag({ "A", "W", "E", "S", "O", "M", "E", "W", "M"}, s, awful.layout.layouts[1])
+
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -199,16 +206,22 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
+
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
+       screen  = s,
+       filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
         bg = beautiful.bg_normal .. "75"
     }
+
+
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "75" })
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "90" })
     -- Add widgets to the wibox
+
+
+
 -- =======================================================================================================================
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -223,11 +236,12 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
+
         spotify_widget({
            play_icon = '/usr/share/icons/Dracula/apps/scalable/spotify.svg',
            pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
         }),
-		    net_speed_widget(),
+	    net_speed_widget(),
         batteryarc_widget({
             show_current_level = true,
             arc_thickness = 1,
@@ -290,14 +304,14 @@ globalkeys = gears.table.join(
             {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
             {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
-       function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
+   -- awful.key({ modkey,           }, "Tab",
+    --   function ()
+     --       awful.client.focus.history.previous()
+      --      if client.focus then
+       --         client.focus:raise()
+        --    end
+     --   end,
+      --  {description = "go back", group = "client"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -338,11 +352,9 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "o",     function () 
-    awful.util.spawn('dmenu_run -h 15')  end,
+    awful.util.spawn('dmenu_run')  end,
             {description = "run dmenu ", group = "launcher"}),
 
-    awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
-        {description = "spotify shell", group = "music"}),
 
 
     awful.key({ modkey },            "w",     function () 
@@ -354,12 +366,16 @@ globalkeys = gears.table.join(
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('pcmanfm')  end,
+    awful.util.spawn('nemo')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "k",     function () 
     awful.util.spawn('konsole')  end,
             {description = "Konsole", group = "launcher"}),
+
+    awful.key({ modkey},            "g",     function ()
+    awful.util.spawn('gfeeds')  end,
+            {description = "News Feed", group = "launcher"}),
 
     awful.key({ modkey },            "b",     function () 
     awful.util.spawn('firefox')  end,
@@ -579,8 +595,10 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("wallpaper")
 awful.spawn.with_shell("compton")
+--awful.spawn.with_shell("gnome-pie")
 awful.spawn.with_shell("Telegram")
 awful.spawn.with_shell("skypeforlinux")
+--awful.spawn.with_shell("birdtray")
 -- awful.spawn.with_shell("kmix")
 
 --Gaps

@@ -1,7 +1,6 @@
 """Plug
 call plug#begin('~/.vim/plugged')
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install --frozen-lockfile'}
 Plug 'mattn/emmet-vim'
 
 "dev
@@ -174,7 +173,7 @@ filetype plugin on
 "KeyBinding By Azizul7m
 "-----------------------------------------------------------------"
 let mapleader = " "
-inoremap kj <ESC>
+inoremap jk <ESC>
 nmap <Leader>e :Lexplore<CR>
 
 
