@@ -29,6 +29,7 @@ call plug#end()
 
 """end Plug
 
+
 "core setting by azizul Islam
 syntax on
 set ruler
@@ -190,7 +191,6 @@ nmap <leader>wv :vsplit<cr>
 nmap <leader>wh :split<cr>
 nmap <leader>wq :wq<cr>
 nmap <leader>wx :q<cr>
-
 
 
 

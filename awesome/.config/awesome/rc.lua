@@ -1,5 +1,10 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+--
+local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
+local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
+--
+--
 pcall(require, "luarocks.loader")
 local vicious = require("vicious")
 
@@ -15,7 +20,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-
 --User modules
 local redflat = require('redflat')
 
@@ -29,6 +33,9 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local hotkeys_popup = require("awful.hotkeys_popup")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local spotify_shell = require("awesome-wm-widgets.spotify-shell.spotify-shell")
+
+dofile(os.getenv("HOME") .. "/.config/awesome/bootstrap.lua")
+
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -86,18 +93,30 @@ awful.layout.layouts = {
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.max.fullscreen,
     --awful.layout.suit.tile.top,
-    -- awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.left,
     --awful.layout.suit.fair,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
     --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+--    awful.layout.suit.corner.nw,
+    --awful.layout.suit.corner.ne,
+    --awful.layout.suit.corner.sw,
+    --awful.layout.suit.corner.se,
 }
 -- }}}
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -185,9 +204,8 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-   awful.tag({ "", "", "", "", "","﬏", "", "", "C"}, s, awful.layout.layouts[1])
-  --  awful.tag({ "A", "W", "E", "S", "O", "M", "E", "W", "M"}, s, awful.layout.layouts[1])
-
+   --awful.tag({ "", "", "", "", "","﬏", "", "", "C"}, s, awful.layout.layouts[1])
+   awful.tag({  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑", "➒"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -211,13 +229,18 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist {
        screen  = s,
        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-        bg = beautiful.bg_normal .. "75"
+       buttons = tasklist_buttons,
+       bg = beautiful.bg_normal .. "85"
+
     }
+
+    volume = load_widget({
+	widget = "widgets.volume.widget"
+    })
 
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "90" })
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "95" })
     -- Add widgets to the wibox
 
 
@@ -230,34 +253,48 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             s.mypromptbox,
-            -- s.mylayoutbox,
+            --s.mylayoutbox,
+            (wibox.layout.margin(s.mylayoutbox, 2,2,3,3))
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            -- mykeyboardlayout,
 
         spotify_widget({
            play_icon = '/usr/share/icons/Dracula/apps/scalable/spotify.svg',
            pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
         }),
+
 	    net_speed_widget(),
-        batteryarc_widget({
+        (wibox.layout.margin( batteryarc_widget({
             show_current_level = true,
             arc_thickness = 1,
-        }),
+        }), 6, 6, 3, 3)),
+
+        --mykeyboardlayout,
         volume_widget(),
         ram_widget(),
         cpu_widget(),
-            -- wibox.widget.systray(),
-            (wibox.layout.margin(wibox.widget.systray(), 6, 6, 3, 3)),
-            mytextclock,
+        mytextclock,
+        (wibox.layout.margin(wibox.widget.systray(), 6, 6, 3, 3)),
+
         },
     }
--- ============================================================================================================================
 end)
+-- ============================================================================================================================
 
 -- }}}
+
+
+
+
+
+
+
+
+
+
+
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -292,6 +329,7 @@ globalkeys = gears.table.join(
     ),
     --awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
             --{description = "show main menu", group = "awesome"}),
+
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -369,9 +407,7 @@ globalkeys = gears.table.join(
     awful.util.spawn('nemo')  end,
             {description = "File Manager", group = "launcher"}),
 
-    awful.key({ modkey, "Shift" },            "k",     function () 
-    awful.util.spawn('konsole')  end,
-            {description = "Konsole", group = "launcher"}),
+
 
     awful.key({ modkey},            "g",     function ()
     awful.util.spawn('gfeeds')  end,
@@ -382,9 +418,9 @@ globalkeys = gears.table.join(
             {description = " Firefox", group = "launcher"}),
 
 
-    awful.key({ modkey, "Shift"  },            "b",     function () 
-    awful.util.spawn('qutebrowser')  end,
-            {description = " QuteBrowser", group = "launcher"}),
+--    awful.key({ modkey, "Shift"  },            "b",     function ()
+ --   awful.util.spawn('qutebrowser')  end,
+  --          {description = " QuteBrowser", group = "launcher"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn("rofi -modi drun,run -show drun -font 'DejaVu Sans 10' -show-icons") end,
@@ -530,15 +566,16 @@ awful.rules.rules = {
     -- Floating clients.
     { rule_any = {
         instance = {
-          "copyq",  -- Includes session name in class.
           "pinentry",
+          "gnome-pie",
         },
         class = {
           "Arandr",
           "Gpick",
           "MessageWin",  -- kalarm.
           "veromix",
-          "xtightvncviewer"},
+          "xtightvncviewer"
+        },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -548,6 +585,7 @@ awful.rules.rules = {
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
           "ConfigManager",  -- Thunderbird's about:config.
+          "gnome-pie",
           --"pop-up",       --" e.g. Google Chrome's (detached) Developer Tools."
         }
       }, properties = { floating = true }},
@@ -558,7 +596,7 @@ awful.rules.rules = {
     },
 
      --Set Firefox to always map on the tag named "3" on screen 1.
-     { rule = { class = "Firefox" },
+     { rule = { class = "telegram-desktop" },
        properties = { screen = 1, tag = "3" }},
 }
 -- }}}
@@ -593,13 +631,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --autostart
 
-awful.spawn.with_shell("wallpaper")
-awful.spawn.with_shell("compton")
---awful.spawn.with_shell("gnome-pie")
-awful.spawn.with_shell("Telegram")
-awful.spawn.with_shell("skypeforlinux")
---awful.spawn.with_shell("birdtray")
--- awful.spawn.with_shell("kmix")
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 
 --Gaps
 beautiful.useless_gap = 4 
