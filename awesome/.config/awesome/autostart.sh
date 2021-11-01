@@ -22,5 +22,5 @@ run conky -c $HOME/.config/awesome/system-overview
 #run spotify
 #run ckb-next -b
 #run discord
-#run telegram-desktop
+run telegram-desktop
 run gnome-pie
