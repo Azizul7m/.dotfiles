@@ -38,7 +38,7 @@ local globalKeys =
     {modkey},
     'r',
     function()
-      awful.spawn('rofi -combi-modi window,drun -show combi -modi combi -font "DejaVu Sans 10" -show-icons')
+      awful.spawn('rofi -show drun -font "DejaVu Sans 10" -show-icons')
     end,
     {description = 'Main menu', group = 'awesome'}
   ),
@@ -55,7 +55,7 @@ local globalKeys =
     {modkey},
     'p',
     function()
-      awful.spawn('dmenu_run')
+      awful.spawn('dmenu_run -fn "Operator Mono" -x "450" -y "250" -h "5" -w "500"')
     end,
     {description = 'Show dmenu ', group = 'awesome'}
   ),

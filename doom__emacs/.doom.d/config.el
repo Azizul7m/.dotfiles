@@ -22,9 +22,9 @@
 ;; (setq doom-font (font-spec :family "JetBrains" :size 10 :weight 'Regular)
 ;;       doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 11))
 
-(setq doom-font (font-spec :family "JetBrainsMono" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "JetBrainsMono" :size 13 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Hack" :size 13)
-      ivy-posframe-font (font-spec :family "Source Code Pro" :size 12))
+      ivy-posframe-font (font-spec :family "Source Code Pro" :size 13))
 
 
 

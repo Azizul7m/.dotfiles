@@ -17,7 +17,7 @@
 (doom! :input
        ;;chinese
        ;;japanese
-       ;;layout            ; auie,ctsrnm is the superior home row
+       layout            ; auie,ctsrnm is the superior home row
 
        :completion
        company           ; the ultimate code completion backend
@@ -102,7 +102,7 @@
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
-       ;;tmux              ; an API for interacting with tmux
+       tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -172,9 +172,9 @@
        ;;zig               ; C, but simpler
 
        :email
-       ;;(mu4e +org +gmail)
+       (mu4e +org +gmail)
        ;;notmuch
-       (wanderlust +gmail)
+       ;;(wanderlust +gmail)
 
        :app
        calendar

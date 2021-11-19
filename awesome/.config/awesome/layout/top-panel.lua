@@ -13,6 +13,9 @@ local battery = require('widget.battery')
 local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 -- Titus - Horizontal Tray
 local systray = wibox.widget.systray()
@@ -139,11 +142,20 @@ local TopPanel = function(s)
       {
         layout = wibox.layout.fixed.horizontal,
         net_speed_widget(),
-        battery,
+        docker_widget(),
+        --battery,
+        ram_widget(),
 		    cpu_widget(),
         wibox.container.margin( volume_widget{
             widget_type = 'arc'
         },dpi(1), dpi(1), dpi(2), dpi(2)),
+
+        wibox.container.margin( batteryarc_widget({
+            show_current_level = true,
+            arc_thickness = 2,
+        }),dpi(1), dpi(1), dpi(2), dpi(2)),
+
+
         -- Clock
         clock_widget,
         wibox.container.margin(systray, dpi(2), dpi(2), dpi(3), dpi(3)),

@@ -252,9 +252,19 @@ alias rm='rm -i'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
-alias vifm='./.config/vifm/scripts/vifmrun'
 alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
 alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
+
+#Docker
+alias dockstart="sudo systemctl start docker.service"
+alias dockstop="sudo systemctl stop docker.service && sudo systemctl stop docker.socket"
+alias dockstatus="sudo systemctl status docker.service"
+alias dockps="sudo docker ps"
+alias dockimags="sudo docker images"
+
+
+
+
 
 # ps
 alias psa="ps auxf"

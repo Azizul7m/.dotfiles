@@ -60,7 +60,7 @@ local tags = {
     defaultApp = apps.default.rofi,
     screen = 1
   },
-jj}
+}
 
 awful.layout.layouts = {
   awful.layout.suit.floating,
