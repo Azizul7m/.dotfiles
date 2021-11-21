@@ -199,6 +199,36 @@ end
 
 
 
+
+
+## Abbr
+
+abbr c 'clear'
+abbr h 'htop'
+abbr df 'df -h'
+abbr n 'variety -n'
+abbr p 'variety -p'
+abbr wd 'variety -t'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # root privileges
 alias doas="doas --"
 
@@ -224,6 +254,8 @@ alias doompurge="~/.emacs.d/bin/doom purge"
 # pacman and yay
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
 alias sps='sudo pacman -S'
+alias ys='yay -S'
+alias yss='yay -Ss'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
 alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
