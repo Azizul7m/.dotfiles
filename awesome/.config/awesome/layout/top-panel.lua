@@ -17,6 +17,7 @@ local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
+
 -- Titus - Horizontal Tray
 local systray = wibox.widget.systray()
   systray:set_horizontal(true)
