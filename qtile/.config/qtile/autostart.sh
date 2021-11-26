@@ -21,8 +21,7 @@ run 'xfce4-power-manager'
 #run 'synology-drive -minimized',
 #run 'steam -silent',
 #run  'feh --randomize --bg-fill ~/.wallpapers/*',
-run '~/.config/awesome/wallpaper.sh'
-run '/usr/bin/variety',
+run '~/.config/qtile/wallpaper.sh'
 #you can set wallpapers in themes as well
 #run applications from startup
 #run firefox
