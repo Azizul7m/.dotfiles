@@ -10,6 +10,7 @@ from libqtile import layout, bar, widget, hook
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
+from colors import colors
 
 mod = "mod4"
 myBrowser = "brave"
@@ -22,13 +23,18 @@ keys = [
         lazy.spawn(myTerm+" -e fish"),
         desc='Launches My Terminal'
         ),
-    Key([mod, "shift"], "Return",
-        lazy.spawn("dmenu_run -p 'Run: '"),
-        desc='Run Launcher'
+    Key(['mod1'], "space",
+        lazy.spawn('rofi -show drun -font "DejaVu Sans 10" -show-icons'),
+        desc='Launches Applications'
+        ),
+    Key([mod], "o",
+        lazy.spawn(
+            "dmenu_run -fn 'Operator Mono' -x '450' -y '250' -h '5' -w '500'  -p 'Run: ' "),
+        desc='Dmenu'
         ),
     Key([mod], "b",
         lazy.spawn(myBrowser),
-        desc='Qutebrowser'
+        desc='Brave Browser'
         ),
 
     Key([mod], "e",
@@ -45,7 +51,7 @@ keys = [
         lazy.next_layout(),
         desc='Toggle through layouts'
         ),
-    Key([mod], "x",
+    Key([mod], "q",
         lazy.window.kill(),
         desc='Kill active window'
         ),
@@ -147,6 +153,16 @@ keys = [
         lazy.layout.toggle_split(),
         desc='Toggle between split and unsplit sides of stack'
         ),
+    # INCREASE/DECREASE/MUTE VOLUME
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 5%+")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
+
+
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod], "space", [
         Key([], "e",
@@ -166,12 +182,19 @@ keys = [
             lazy.spawn("pstorm"),
             desc='Launch PhpStorm'
             ),
+ 
+
+        Key([], "g",
+            lazy.spawn("gfeeds"),
+            desc='Launch Gnome Feeds'
+            ),
+
         Key([], "m",
             lazy.spawn("emacsclient -c -a 'emacs' --eval '(mu4e)'"),
             desc='Launch mu4e inside Emacs'
             ),
-        Key([], "n",
-            lazy.spawn("emacsclient -c -a 'emacs' --eval '(elfeed)'"),
+        Key([], "d",
+            lazy.spawn("emacsclient -c -a 'emacs' --eval '(docker)'"),
             desc='Launch elfeed inside Emacs'
             ),
         Key([], "s",
@@ -185,7 +208,7 @@ keys = [
             )
     ]),
     # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
-    KeyChord([mod], "p", [
+    KeyChord(['mod1'], "p", [
         Key([], "e",
             lazy.spawn("dolphin"),
             desc='Choose a config file to edit'
@@ -224,23 +247,33 @@ keys = [
             )
     ])
 ]
+groups = [Group(i) for i in "123456789"]
 
-groups = [Group("DEV", layout='monadtall'),
-          Group("WWW", layout='monadtall'),
-          Group("SYS", layout='monadtall'),
-          Group("SYS", layout='monadtall'),
-          Group("DOC", layout='monadtall'),
-          Group("VBOX", layout='monadtall'),
-          Group("CHAT", layout='monadtall'),
-          Group("MUS", layout='monadtall'),
-          Group("VID", layout='monadtall'),
-          Group("GFX", layout='floating')]
+for i in groups:
+    keys.extend([
+        # mod1 + letter of group = switch to group
+        Key([mod],
+            i.name,
+            lazy.group[i.name].toscreen(),
+            desc="Switch to group {}".format(i.name)),
 
+        Key([mod], "Right", lazy.screen.next_group(),
+            desc="Switch to next group"),
 
-# Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
-# MOD4 + index Number : Switch to Group[index]
-# MOD4 + shift + index Number : Send active window to another Group
-dgroups_key_binder = simple_key_binder("mod4")
+        Key([mod], "Left", lazy.screen.prev_group(),
+            desc="Switch to previous group"),
+
+        # mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod, "shift"],
+            i.name,
+            lazy.window.togroup(i.name, switch_group=True),
+            desc="Switch to & move focused window to group {}".format(i.name)),
+        # Or, use below if you prefer not to switch to that group.
+        # # mod1 + shift + letter of group = move focused window to group
+        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+        #     desc="move focused window to group {}".format(i.name)),
+    ])
+
 
 layout_theme = {"border_width": 2,
                 "margin": 8,
@@ -260,7 +293,8 @@ layouts = [
     # layout.Matrix(**layout_theme),
     # layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
-    #layout.Max(**layout_theme),
+    layout.Floating(**layout_theme),
+    # layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
     # layout.RatioTile(**layout_theme),
     layout.TreeTab(
@@ -283,20 +317,10 @@ layouts = [
         vspace=3,
         panel_width=200
     ),
-    layout.Floating(**layout_theme)
 
 ]
 
 
-colors = [["#282c34", "#282c34"],  # panel background
-            ["#3d3f4b", "#434758"],  # background for current screen tab
-            ["#ffffff", "#ffffff"],  # font color for group names
-            ["#ff5555", "#ff5555"],  # border line color for current tab
-            # border line color for 'other tabs' and color for 'odd widgets'
-            ["#74438f", "#74438f"],
-            ["#4f76c7", "#4f76c7"],  # color for the 'even widgets'
-            ["#e1acff", "#e1acff"],  # window name
-            ["#ecbbfb", "#ecbbfb"]]  # backbround for inactive screens
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -304,7 +328,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 widget_defaults = dict(
     font="Ubuntu Mono",
     fontsize=12,
-    padding=2,
+    padding=1,
     background=colors[2]
 )
 
@@ -322,10 +346,10 @@ def init_widgets_list():
             padding_y=5,
             padding_x=3,
             borderwidth=3,
-            active=colors[2],
-            inactive=colors[7],
+            active=colors[1],
+            inactive=colors[8],
             rounded=False,
-            highlight_color=colors[1],
+            highlight_color=colors[9],
             highlight_method="line",
             this_current_screen_border=colors[6],
             this_screen_border=colors[4],
@@ -333,6 +357,13 @@ def init_widgets_list():
             other_screen_border=colors[4],
             foreground=colors[2],
             background=colors[0]
+        ),
+        widget.CurrentLayoutIcon(
+            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
+            foreground=colors[2],
+            background=colors[0],
+            padding=0,
+            scale=0.7
         ),
         widget.Prompt(
             prompt=prompt,
@@ -349,19 +380,19 @@ def init_widgets_list():
         widget.Net(
             interface="eno1",
             format='{down} ↓↑ {up}',
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
-            padding=5
+            padding=5,
         ),
         widget.TextBox(
             text=" 🌡",
             padding=2,
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             fontsize=11
         ),
         widget.ThermalSensor(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             threshold=90,
             padding=5
@@ -369,7 +400,7 @@ def init_widgets_list():
         widget.TextBox(
             text=" ⟳",
             padding=2,
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             fontsize=14
         ),
@@ -377,81 +408,66 @@ def init_widgets_list():
             update_interval=1800,
             distro="Arch_checkupdates",
             display_format="{updates} Updates",
-            foreground=colors[2],
+            foreground=colors[1],
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
                 myTerm + ' -e sudo pacman -Syu')},
             background=colors[0]
         ),
         widget.TextBox(
             text=" 🖬",
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             padding=0,
             fontsize=14
         ),
         widget.Memory(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             mouse_callbacks={
                 'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
             padding=5
         ),
-        # ShellScript(
-        #     fname="battery.sh",
-        #     update_interval=60,
-        #     markup=True,
-        #     padding=1,
-        # ),
-        # # Wifi strength
-        # ShellScript(
-        #     fname="wifi-signal.sh",
-        #     update_interval=60,
-        #     markup=True,
-        #     padding=1,
-        # ),
-
         widget.CPUGraph(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
-            border_color=colors[5],
-            graph_color=colors[2],
+            border_color=colors[1],
+            graph_color=colors[1],
             border_width=1,
             line_width=1,
-            type="line",
+            type="linefill",
             width=50,
         ),
-
         widget.TextBox(
-            text=" Vol:",
-            foreground=colors[2],
+            text="Vol:",
+            foreground=colors[1],
             background=colors[0],
             padding=0
         ),
         widget.Volume(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
             padding=5
         ),
-        widget.CurrentLayoutIcon(
-            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[0],
+        widget.BatteryIcon(
+            foreground=colors[1],
             background=colors[0],
-            padding=0,
-            scale=0.7
+            update_interval=5,
+            padding=8
         ),
-        widget.CurrentLayout(
-            foreground=colors[2],
+        widget.Battery(
             background=colors[0],
-            padding=5
+            foreground=colors[1],
+            format="{percent:2.0%}",
         ),
         widget.Clock(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
-            format=" %H:%M %p"
+            format=" %I:%M %p"
         ),
         widget.Systray(
-            foreground=colors[2],
+            foreground=colors[1],
             background=colors[0],
+            padding=5
         ),
     ]
     return widgets_list
@@ -526,7 +542,7 @@ mouse = [
 
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = False
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 
 
@@ -540,13 +556,10 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
 ])
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
+
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
-auto_minimize = True
 
 
 @hook.subscribe.startup_once
@@ -555,12 +568,8 @@ def start_once():
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
+auto_minimize = True
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+wmname = "Qtile"

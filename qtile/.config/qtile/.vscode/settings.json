@@ -1,4 +1,5 @@
 {
   "files.autoSave": "afterDelay",
-  "python.formatting.provider": "autopep8"
+  "python.formatting.provider": "autopep8",
+  "cmake.configureOnOpen": true
 }
