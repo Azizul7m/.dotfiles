@@ -24,7 +24,7 @@ keys = [
         desc='Launches My Terminal'
         ),
     Key(['mod1'], "space",
-        lazy.spawn('rofi -show drun -font "DejaVu Sans 10" -show-icons'),
+        lazy.spawn('rofi -show combi drun, -font "DejaVu Sans 10" -show-icons'),
         desc='Launches Applications'
         ),
     Key([mod], "o",
@@ -38,13 +38,13 @@ keys = [
         ),
 
     Key([mod], "e",
-        lazy.spawn("emacs"),
-        desc='Qutebrowser'
+        lazy.spawn("pcmanfm"),
+        desc='File Explorar'
         ),
 
     Key([mod], "c",
         lazy.spawn("code"),
-        desc='Qutebrowser'
+        desc='Visual Studio Code'
         ),
 
     Key([mod], "Tab",
@@ -182,7 +182,7 @@ keys = [
             lazy.spawn("pstorm"),
             desc='Launch PhpStorm'
             ),
- 
+
 
         Key([], "g",
             lazy.spawn("gfeeds"),
@@ -315,11 +315,10 @@ layouts = [
         section_bottom=20,
         level_shift=8,
         vspace=3,
-        panel_width=200
+        panel_width=150
     ),
 
 ]
-
 
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
@@ -338,6 +337,11 @@ extension_defaults = widget_defaults.copy()
 
 def init_widgets_list():
     widgets_list = [
+        widget.Image(
+            filename='~/.config/qtile/res/eos-c.png',
+            margin=3,
+            background="#2f343f",
+            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn("rofi -show combi drun  -font 'DejaVu Sans 10' -show-icons")}),
         widget.GroupBox(
             font="Ubuntu Bold",
             fontsize=9,
@@ -379,7 +383,7 @@ def init_widgets_list():
         ),
         widget.Net(
             interface="eno1",
-            format='{down} ↓↑ {up}',
+            format='{down} ↓↑',
             foreground=colors[1],
             background=colors[0],
             padding=5,
