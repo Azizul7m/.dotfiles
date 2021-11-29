@@ -145,7 +145,7 @@ keys = [
         lazy.layout.flip(),
         desc='Switch which side main pane occupies (XmonadTall)'
         ),
-    Key([mod], "space",
+    Key([mod], "x",
         lazy.layout.next(),
         desc='Switch window focus to other pane(s) of stack'
         ),
@@ -191,6 +191,11 @@ keys = [
 
         Key([], "m",
             lazy.spawn("emacsclient -c -a 'emacs' --eval '(mu4e)'"),
+            desc='Launch mu4e inside Emacs'
+            ),
+
+        Key([], "r",
+                lazy.spawn(myTerm + ' -e ranger'),
             desc='Launch mu4e inside Emacs'
             ),
         Key([], "d",
@@ -400,13 +405,6 @@ def init_widgets_list():
             background=colors[0],
             threshold=90,
             padding=5
-        ),
-        widget.TextBox(
-            text=" ⟳",
-            padding=2,
-            foreground=colors[1],
-            background=colors[0],
-            fontsize=14
         ),
         widget.CheckUpdates(
             update_interval=1800,
