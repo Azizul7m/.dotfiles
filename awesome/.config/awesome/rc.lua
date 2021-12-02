@@ -84,13 +84,13 @@ awful.layout.layouts = {
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.max.fullscreen,
     --awful.layout.suit.tile.top,
-    awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.left,
     --awful.layout.suit.fair,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
-    --awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    awful.layout.suit.magnifier,
+    --awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -183,7 +183,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-   awful.tag({ "", "", "", "", "","﬏", "", "", ""}, s, awful.layout.layouts[1])
+   awful.tag({ "", "", "", "", "","﬏", "", "", ""}, s, awful.layout.layouts[1])
     --awful.tag({ "A", "W", "E", "S", "O", "M", "E", "W", "M"}, s, awful.layout.layouts[1])
 
 
@@ -224,8 +224,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
             s.mytaglist,
-            s.mypromptbox,
-            -- s.mylayoutbox,
+            wibox.container.margin (s.mylayoutbox, 2,2,2,2,7),
+            wibox.container.margin(s.mypromptbox,50,20,0,0)
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
@@ -237,13 +237,13 @@ awful.screen.connect_for_each_screen(function(s)
            pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
         }),
 		net_speed_widget(),
-        batteryarc_widget(),
+        wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
         volume_widget(),
         ram_widget(),
         cpu_widget(),
         mytextclock,
         -- wibox.widget.systray(),
-        wibox.widget.systray(),
+        wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 )
         },
     }
 -- ============================================================================================================================
@@ -352,7 +352,7 @@ globalkeys = gears.table.join(
 
 
     awful.key({ modkey },            "w",     function () 
-    awful.util.spawn('rofi -show window -font "DejaVu Sans 10" -show-icons')  end,
+    awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "f",     function () 

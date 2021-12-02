@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'mattn/emmet-vim'
+Plug 'ap/vim-css-color'
 
 "dev
 
@@ -15,7 +16,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'thaerkh/vim-indentguides'
 "Plug 'wfxr/minimap.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'ap/vim-css-color'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'sheerun/vim-polyglot'
@@ -60,6 +60,7 @@ set smartindent
 set expandtab smarttab
 set formatoptions=tcqrn1
 set emo
+set wildmode=longest,list,full
 set completeopt+=menuone,longest
 "Utils
 set dictionary+=/usr/share/dict/words
@@ -75,6 +76,12 @@ set sm "showmatch
 
 set undodir=/tmp
 set directory=/tmp//,.
+
+"Styling
+highlight Comment cterm=italic
+highlight CursorLine ctermbg=Black cterm=NONE
+highlight CursorLineNr ctermbg=Black cterm=bold ctermbg=green
+highlight LineNr ctermbg=Black ctermfg=White
 
 "themes staff
 "--------------------------------------------------------------
