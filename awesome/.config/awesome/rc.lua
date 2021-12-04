@@ -183,7 +183,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-   awful.tag({ "", "", "", "", "","﬏", "", "", ""}, s, awful.layout.layouts[1])
+   awful.tag({ "", "", "", "", "","﬏", "", "", ""}, s, awful.layout.layouts[1])
     --awful.tag({ "A", "W", "E", "S", "O", "M", "E", "W", "M"}, s, awful.layout.layouts[1])
 
 
@@ -212,7 +212,7 @@ awful.screen.connect_for_each_screen(function(s)
         bg = beautiful.bg_normal .. "75"
     }
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "75" })
+    s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "85" })
     -- Add widgets to the wibox
 
 
@@ -225,7 +225,7 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             wibox.container.margin (s.mylayoutbox, 2,2,2,2,7),
-            wibox.container.margin(s.mypromptbox,50,20,0,0)
+            wibox.container.margin(s.mypromptbox,  5,9,0,0, "#FFFFFF", "1" )
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets

@@ -15,10 +15,10 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'kabouzeid/nvim-lspinstall'
         Plug 'prabirshrestha/asyncomplete.vim'
         Plug 'prabirshrestha/asyncomplete-lsp.vim'
+        Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+        Plug 'mrdotb/vim-tailwindcss'
     endif
     "Lang
-    Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
-    Plug 'mrdotb/vim-tailwindcss'
 
 
     "themes staff

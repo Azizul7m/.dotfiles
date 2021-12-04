@@ -19,10 +19,10 @@ theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#FFFFFF"
+theme.fg_normal     = "#eeeeff"
 theme.fg_focus      = "#FEB300"
 theme.fg_urgent     = "#FFFFFF"
-theme.fg_minimize   = "#ffffff"
+theme.fg_minimize   = theme.bg_normal
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1.4)
@@ -34,9 +34,9 @@ theme.border_marked = "#91231C"
 
 
 theme.taglist_fg_focus    = "#FFFFFF"
-theme.taglist_fg_occupied = "#2E2E2E"
+theme.taglist_fg_occupied = "#DDDDDD"
 theme.taglist_fg_urgent   = "#ED7572"
-theme.taglist_fg_empty    = "#FFFFFF"
+theme.taglist_fg_empty    = "#999999"
 theme.taglist_spacing     = 3
 theme.taglist_font        = "awesomewm 9"
 
