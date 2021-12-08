@@ -1,7 +1,5 @@
 """Plug
 call plug#begin('~/.vim/plugged')
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 
 "dev
@@ -19,7 +17,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'sheerun/vim-polyglot'
-
+Plug 'jiangmiao/auto-pairs'
 "git
 Plug 'tpope/vim-fugitive'
 
@@ -166,7 +164,7 @@ xmap <leader>a <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap <leader>a <Plug>(EasyAlign)
-
+let g:rust_clip_command = 'xclip -selection clipboard'
 
 "indentguides
 let g:indentguides_spacechar = '┆'

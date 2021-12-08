@@ -4,3 +4,4 @@ configuration {
   show-icons:         true;
   icon-theme:         "candy-icons";
 }
+@theme "/usr/share/rofi/themes/paper-float.rasi"

@@ -1,7 +1,5 @@
 ""Plug
 call plug#begin('~/.vim/pluggedNvim/')
-    Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-    Plug 'mattn/emmet-vim'
 
     if has ("nvim") 
         Plug 'nvim-lua/plenary.nvim'
@@ -10,60 +8,63 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'romgrk/barbar.nvim'
         Plug 'kyazdani42/nvim-web-devicons'
         Plug 'hrsh7th/nvim-compe'
-        "lsp
-        Plug 'neovim/nvim-lspconfig'
-        Plug 'kabouzeid/nvim-lspinstall'
-        Plug 'prabirshrestha/asyncomplete.vim'
-        Plug 'prabirshrestha/asyncomplete-lsp.vim'
-        Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+        Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+        Plug 'mattn/emmet-vim'
+        Plug 'ap/vim-css-color'
+        Plug 'Xuyuanp/yanil'
+
+
+        Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        "lang
+        Plug 'rust-lang/rust.vim'
         Plug 'mrdotb/vim-tailwindcss'
-    endif
-    "Lang
-
-
+        Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+        "lavravel
+        Plug 'tpope/vim-dispatch'             "| Optional
+        Plug 'tpope/vim-projectionist'        "|
+        Plug 'noahfrederick/vim-composer'     "|
+        Plug 'noahfrederick/vim-laravel'
+        endif
     "themes staff
-    Plug 'joshdick/onedark.vim'
-
+    Plug 'https://github.com/vim-airline/vim-airline' " Status bar
+    Plug 'navarasu/onedark.nvim'
     "Utils
     Plug 'arcticicestudio/nord-vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'mcchrish/nnn.vim'
+    Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
+    Plug 'scrooloose/nerdtree'
+    Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+    Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+    Plug 'iamcco/markdown-preview.nvim'
+
+
+    "Dashboard
+    Plug 'glepnir/dashboard-nvim'
+    Plug 'liuchengxu/vim-clap'
 
     "Plug 'wfxr/minimap.vim'
     Plug 'junegunn/vim-easy-align'
-    Plug 'ap/vim-css-color'
     Plug 'liuchengxu/vim-which-key'
     Plug 'sheerun/vim-polyglot'
 
     "git
     Plug 'tpope/vim-fugitive'
+    Plug 'jreybert/vimagit'
 
     "PopUp window (Suggestions)
     Plug 'vim-scripts/AutoComplPop'
 
-
-
 call plug#end()
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 "themes staff
 "--------------------------------------------------------------
 colorscheme nord
-
-
-
+let g:onedark_style = 'warm'
+"colorscheme onedark
 
 
 "Random staff
@@ -73,6 +74,10 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -127,24 +132,97 @@ nnoremap <leader>tt :set completefunc=tailwind#complete<cr>
 " Add this autocmd to your vimrc to close the preview window after the completion is done
 autocmd CompleteDone * pclose
 
+"nnn
+let g:nnn#set_default_mappings = 0
+
+"Coc
+let g:coc_global_extensions = ['coc-json', 'coc-git']
+
+
+
+"Dashboard
+
+"markdown
+let g:mkdp_browser = 'firefox'
+
+let g:mkdp_auto_start = 1
+let g:mkdp_open_ip = '127.0.0.1:8080'
+
+"devicons
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+
+
+
+
+
+"NERDTree
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusShowIgnored = 1
+let g:NERDTreeGitStatusShowClean = 1
+let g:NERDTreeGitStatusConcealBrackets = 1
+
+
+
+"
+"Clap
+let g:clap_layout = { 'relative': 'editor' }
+
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+
 "KeyBinding By Azizul7m
 "-----------------------------------------------------------------"
 let mapleader = " "
 inoremap jk <ESC>
-nmap <Leader>e :Lexplore<CR>
+nmap <leader>nt :NERDTree<CR>
+nmap <leader>e :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+
+"markdown
+nmap <leader>mp <Plug>MarkdownPreview
+nmap <leader>ms <Plug>MarkdownPreviewStop
+nmap <leader>mt <Plug>MarkdownPreviewToggle
 
 nmap <leader>pi :PlugInstall<cr>
 nmap <leader>pc :PlugClean<cr>
 nmap <leader>ps :PlugStatus<cr>
 
+"Dashboard
+nmap <leader>ss :<C-u>SessionSave<CR>
+nmap <leader>sl :<C-u>SessionLoad<CR>
+
+"Nnn
+" Start n³ in the current file's directory
+nnoremap <leader>nn :NnnPicker<CR>
 
 "Tab to selete suggestions
 
+"Tagbar
+nmap <leader>tg :TagbarToggle<CR>
 
 "Navigate TAB
 nmap <Tab> :tabnext<CR>
 nmap <S-Tab> :tabprev<CR>
-nmap <leader>n :tabnew<CR>
+nmap <leader>wn :tabnew<CR>
 nmap <leader>wv :vsplit<cr>
 nmap <leader>wh :split<cr>
 nmap <leader>wQ :wq<cr>
@@ -158,7 +236,6 @@ nnoremap <silent> <C-Up> :resize +2<CR>
 nnoremap <silent> <C-down> :resize -2<CR>
 nnoremap <silent> <C-left> :vertical resize +2<CR>
 nnoremap <silent> <C-right> :vertical resize -2<CR>
-
 
 "Batter window Navigation
 nnoremap <C-h> <C-\><C-N><C-w>h
@@ -196,6 +273,21 @@ inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
 " Cancel the complete menu item like CTRL+e would.
 inoremap <expr> <Left> pumvisible() ? "<C-e>" : "<Left>"
 
+
+
+
+"autocmd
+
+"NERDTree 
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+
+
+
+
+
+
+"
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 """"Setting
 
@@ -229,8 +321,13 @@ set colorcolumn=99999
 set smartindent
 set expandtab smarttab
 set formatoptions=tcqrn1
+set complete+=kspell
+set wildmode=longest,list,full
+set wildmenu
 set emo
-set completeopt+=menuone,longest
+
+
+
 "Utils
 set dictionary+=/usr/share/dict/words
 set complete+=k/usr/share/dict/words

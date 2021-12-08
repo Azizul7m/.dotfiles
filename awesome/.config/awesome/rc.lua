@@ -236,14 +236,14 @@ awful.screen.connect_for_each_screen(function(s)
            play_icon = '/usr/share/icons/Dracula/apps/scalable/spotify.svg',
            pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
         }),
-		net_speed_widget(),
+		    net_speed_widget(),
+        -- wibox.widget.systray(),
+        wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 ),
         wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
         volume_widget(),
         ram_widget(),
         cpu_widget(),
         mytextclock,
-        -- wibox.widget.systray(),
-        wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 )
         },
     }
 -- ============================================================================================================================
@@ -351,12 +351,12 @@ globalkeys = gears.table.join(
         {description = "spotify shell", group = "music"}),
 
 
-    awful.key({ modkey },            "w",     function () 
+    awful.key({ "Mod1" },   "space",     function () 
     awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "f",     function () 
-    awful.util.spawn('dws')  end,
+    awful.util.spawn('~/.config/awesome/dws.sh')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 

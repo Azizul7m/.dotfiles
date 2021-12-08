@@ -2,7 +2,7 @@
 
 
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $HOME/Applications ~/.config/polybar ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
+set -U fish_user_paths /home/anower/.config/rofi/bin $HOME/.config/rofi/applets/styles  $HOME/.local/bin $HOME/Applications ~/.config/polybar ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
@@ -288,7 +288,8 @@ alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 
 #Docker
 alias dockstart="sudo systemctl start docker.service"
-alias dockstop="sudo systemctl stop docker.service && sudo systemctl stop docker.socket"
+alias dockstop="sudo systemctl stop docker.service" 
+alias docksocket="sudo systemctl stop docker.socket"
 alias dockstatus="sudo systemctl status docker.service"
 alias dockps="sudo docker ps"
 alias dockimags="sudo docker images"
@@ -366,7 +367,9 @@ alias bupskel='cp -Rf /etc/skel ~/.skel-backup-(date +%Y.%m.%d-%H.%M.%S)'
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-colorscript random
+
+ fm6000 -r -c random
+# https://github.com/anhsirk0/fetch-master-6000
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
