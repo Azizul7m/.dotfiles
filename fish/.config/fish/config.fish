@@ -348,6 +348,7 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 # termbin
 alias tb="nc termbin.com 9999"
+alias recordterminal="asciinema rec"
 
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'

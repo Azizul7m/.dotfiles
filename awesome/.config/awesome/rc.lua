@@ -344,7 +344,7 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "o",     function () 
-    awful.util.spawn('dmenu_run -h 15')  end,
+    awful.util.spawn(" dmenu_run -fn 'Operator Mono' -x '450' -y '250' -h '5' -w '500'  -p 'Run: ' ")  end,
             {description = "run dmenu ", group = "launcher"}),
 
     awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
@@ -587,7 +587,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --autostart
 
-awful.spawn.with_shell("compton")
+awful.spawn.with_shell("picom")
+awful.spawn.with_shell("exec ~/bin/lock.sh")
 awful.spawn.with_shell("~/.dotfiles/qtile/.config/qtile/autostart.sh")
 awful.spawn.with_shell("Wallpaper")
 -- awful.spawn.with_shell("kmix")
