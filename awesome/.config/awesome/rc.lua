@@ -24,9 +24,11 @@ local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed"
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local hotkeys_popup = require("awful.hotkeys_popup")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
-local spotify_shell = require("awesome-wm-widgets.spotify-shell.spotify-shell")
-
-
+local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
+local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -121,7 +123,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%a,%d %b %l:%M%p ")
+mytextclock = wibox.widget.textclock("%a, %l:%M%p ")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -204,6 +206,12 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
+
+    local cw = calendar_widget({
+        theme = 'nord',
+        placement = 'top_right',
+        radius = 5,
+    })
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
@@ -212,7 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
         bg = beautiful.bg_normal .. "75"
     }
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top",width = '98%',  screen = s, bg = beautiful.bg_normal .. "85" })
+    s.mywibox = awful.wibar({ position = "top",  screen = s, bg = beautiful.bg_normal .. "85" })
     -- Add widgets to the wibox
 
 
@@ -232,18 +240,21 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
 
-        spotify_widget({
-           play_icon = '/usr/share/icons/Dracula/apps/scalable/spotify.svg',
-           pause_icon = '/usr/share/icons/Dracula/apps/scalable/spotify-client.svg'
-        }),
-		    net_speed_widget(),
+        spotify_widget(),
+        net_speed_widget(),
         -- wibox.widget.systray(),
         wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 ),
+        docker_widget(),
         wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
         volume_widget(),
         ram_widget(),
         cpu_widget(),
         mytextclock,
+        mytextclock:connect_signal("button::press", 
+            function(_, _, _, button)
+                if button == 1 then cw.toggle() end
+            end),
+        logout_menu_widget(),
         },
     }
 -- ============================================================================================================================
@@ -284,6 +295,10 @@ globalkeys = gears.table.join(
     ),
     --awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
             --{description = "show main menu", group = "awesome"}),
+
+
+    awful.key({ modkey, "Shift" }, "l", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end, 
+        {description = "Show logout screen", group = "custom"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -347,16 +362,15 @@ globalkeys = gears.table.join(
     awful.util.spawn(" dmenu_run -fn 'Operator Mono' -x '450' -y '250' -h '5' -w '500'  -p 'Run: ' ")  end,
             {description = "run dmenu ", group = "launcher"}),
 
-    awful.key({ modkey,        }, "d", function () spotify_shell.launch() end, 
-        {description = "spotify shell", group = "music"}),
-
-
     awful.key({ "Mod1" },   "space",     function () 
     awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
             {description = "Active Windows", group = "launcher"}),
 
+    awful.key({ "Mod1" },   "F4",     function () 
+    awful.util.spawn.with_shell("applet_powermenu")  end,
+            {description = "Power Menue (Rofi)", group = "launcher"}),
     awful.key({ modkey, "Shift" },            "f",     function () 
-    awful.util.spawn('~/.config/awesome/dws.sh')  end,
+    awful.util.spawn.with_shell('~/.config/awesome/dws.sh')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
@@ -526,6 +540,10 @@ awful.rules.rules = {
         instance = {
           "copyq",  -- Includes session name in class.
           "pinentry",
+          "xdm",
+          "telegram-desktop",
+          "feeds",
+          "skype",
         },
         class = {
           "Arandr",
@@ -587,9 +605,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --autostart
 
-awful.spawn.with_shell("picom")
-awful.spawn.with_shell("exec ~/bin/lock.sh")
-awful.spawn.with_shell("~/.dotfiles/qtile/.config/qtile/autostart.sh")
+awful.spawn.with_shell("exec ~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("Wallpaper")
 -- awful.spawn.with_shell("kmix")
 

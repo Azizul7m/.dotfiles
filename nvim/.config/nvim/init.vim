@@ -12,6 +12,7 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'mattn/emmet-vim'
         Plug 'ap/vim-css-color'
         Plug 'Xuyuanp/yanil'
+        Plug 'tpope/vim-commentary'
 
 
         Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -26,18 +27,14 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'noahfrederick/vim-laravel'
         endif
     "themes staff
-    Plug 'https://github.com/vim-airline/vim-airline' " Status bar
     Plug 'navarasu/onedark.nvim'
     "Utils
+    Plug 'terryma/vim-multiple-cursors' "Multi Cursor
     Plug 'arcticicestudio/nord-vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'mcchrish/nnn.vim'
-    Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
     Plug 'scrooloose/nerdtree'
     Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
-    Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
-    Plug 'iamcco/markdown-preview.nvim'
 
 
     "Dashboard
@@ -77,6 +74,11 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
+"Commtentary
+nnoremap <space>/ :Commentary<CR>
+vnoremap <space>/ :Commentary<CR>
+
+
 
 
 " Find files using Telescope command-line sugar.
@@ -84,6 +86,19 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+"Mutli Cursor
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<A-n>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
 
 
 
@@ -132,8 +147,6 @@ nnoremap <leader>tt :set completefunc=tailwind#complete<cr>
 " Add this autocmd to your vimrc to close the preview window after the completion is done
 autocmd CompleteDone * pclose
 
-"nnn
-let g:nnn#set_default_mappings = 0
 
 "Coc
 let g:coc_global_extensions = ['coc-json', 'coc-git']
@@ -210,9 +223,6 @@ nmap <leader>ps :PlugStatus<cr>
 nmap <leader>ss :<C-u>SessionSave<CR>
 nmap <leader>sl :<C-u>SessionLoad<CR>
 
-"Nnn
-" Start n³ in the current file's directory
-nnoremap <leader>nn :NnnPicker<CR>
 
 "Tab to selete suggestions
 
