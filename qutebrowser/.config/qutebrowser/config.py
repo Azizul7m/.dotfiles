@@ -99,12 +99,6 @@ c.content.headers.accept_language = "en-US,en;q=0.8,fi;q=0.6"
 #   - none: Don"t use any proxy
 c.content.proxy = "none"
 
-# Validate SSL handshakes.
-# Valid values:
-#   - true
-#   - false
-#   - ask
-c.content.ssl_strict = True
 
 # A list of user stylesheet filenames to use.
 #c.content.user_stylesheets = "user.css"

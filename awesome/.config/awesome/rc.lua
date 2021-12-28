@@ -14,6 +14,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local treetile = require("treetile")
 require('module.notifications')
 
 --widgets
@@ -33,7 +34,8 @@ local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-require("collision")()
+local radical = require("radical")
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -96,11 +98,13 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    treetile
 }
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
+
 myawesomemenu = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual", terminal .. " -e man awesome" },
@@ -293,11 +297,14 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    --awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-            --{description = "show main menu", group = "awesome"}),
+    -- awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    --         {description = "show main menu", group = "awesome"}),
 
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%+", false) end),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-", false) end),
+    awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle", false) end),
 
-    awful.key({ modkey, "Shift" }, "l", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end, 
+    awful.key({ modkey, "Mod1" }, "l", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end, 
         {description = "Show logout screen", group = "custom"}),
 
     -- Layout manipulation
@@ -326,7 +333,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart,
             {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-            {description = "quit awesome", group = "awesome"}),
+            {description = "quit kwesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
             {description = "increase master width factor", group = "layout"}),
@@ -369,6 +376,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod1" },   "F4",     function () 
     awful.util.spawn.with_shell("applet_powermenu")  end,
             {description = "Power Menue (Rofi)", group = "launcher"}),
+
     awful.key({ modkey, "Shift" },            "f",     function () 
     awful.util.spawn.with_shell('~/.config/awesome/dws.sh')  end,
             {description = "Active Windows", group = "launcher"}),
@@ -376,6 +384,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "e",     function () 
     awful.util.spawn('pcmanfm')  end,
             {description = "File Manager", group = "launcher"}),
+
+    awful.key({ modkey, "Shift" },            "e",     function () 
+    awful.util.spawn('dolphin')  end,
+            {description = "dolphin", group = "launcher"}),
+
 
     awful.key({ modkey, "Shift" },            "k",     function () 
     awful.util.spawn('konsole')  end,
@@ -388,7 +401,6 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "b",     function () 
     awful.util.spawn('firefox')  end,
             {description = " Firefox", group = "launcher"}),
-
 
     awful.key({ modkey, "Shift"  },            "b",     function () 
     awful.util.spawn('qutebrowser')  end,
@@ -544,6 +556,8 @@ awful.rules.rules = {
           "telegram-desktop",
           "feeds",
           "skype",
+          "vlc",
+          "mpv",
         },
         class = {
           "Arandr",
