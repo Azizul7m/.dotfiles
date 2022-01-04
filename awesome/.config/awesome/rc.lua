@@ -14,7 +14,6 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local treetile = require("treetile")
 require('module.notifications')
 
 --widgets
@@ -34,7 +33,6 @@ local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-local radical = require("radical")
 
 
 -- {{{ Error handling
@@ -98,7 +96,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
-    treetile
 }
 -- }}}
 
@@ -407,7 +404,7 @@ globalkeys = gears.table.join(
             {description = " QuteBrowser", group = "launcher"}),
 
     -- Menubar
-    awful.key({ modkey }, "p", function() awful.util.spawn("rofi -modi drun,run -show drun -font 'DejaVu Sans 10' -show-icons") end,
+    awful.key({ modkey }, "p", function() awful.util.spawn("rofi -show drun -font 'Fira Code 9' -show-icons") end,
             {description = "Rofi all applications", group = "launcher"})
 )
 

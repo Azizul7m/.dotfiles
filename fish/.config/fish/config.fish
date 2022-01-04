@@ -369,7 +369,7 @@ alias bupskel='cp -Rf /etc/skel ~/.skel-backup-(date +%Y.%m.%d-%H.%M.%S)'
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
 
- fm6000 -r -c random
+# fm6000 -r -c random
 # https://github.com/anhsirk0/fetch-master-6000
 
 ### SETTING THE STARSHIP PROMPT ###

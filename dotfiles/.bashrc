@@ -170,6 +170,10 @@ ex ()
 }
 
 
+export LANG="en-US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+
 exec fish
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
