@@ -23,6 +23,7 @@ run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-ke
 #run  'feh --randomize --bg-fill ~/.wallpapers/*',
 run 'gnome-pie'
 run 'picom'
+run 'xclip'
 #run 'telegram-desktop'
 #run 'pamac-tray'
 #you can set wallpapers in themes as well

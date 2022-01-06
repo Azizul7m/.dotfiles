@@ -2,7 +2,7 @@
 
 
 set -e fish_user_paths
-set -U fish_user_paths /home/anower/.config/rofi/bin $HOME/.config/rofi/applets/styles  $HOME/.local/bin $HOME/Applications ~/.config/polybar ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
+set -U fish_user_paths ~/bin /home/anower/.config/rofi/bin $HOME/.config/rofi/applets/styles  $HOME/.local/bin $HOME/Applications ~/.config/polybar ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message

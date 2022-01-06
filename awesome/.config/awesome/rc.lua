@@ -15,6 +15,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 require('module.notifications')
+require("collision")()
 
 --widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
@@ -371,11 +372,11 @@ globalkeys = gears.table.join(
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ "Mod1" },   "F4",     function () 
-    awful.util.spawn.with_shell("applet_powermenu")  end,
+    awful.spawn.with_shell("applet_powermenu")  end,
             {description = "Power Menue (Rofi)", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "f",     function () 
-    awful.util.spawn.with_shell('~/.config/awesome/dws.sh')  end,
+    awful.spawn.with_shell('~/.config/awesome/dws.sh')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
@@ -383,13 +384,13 @@ globalkeys = gears.table.join(
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "e",     function () 
-    awful.util.spawn('dolphin')  end,
+    awful.util.spawn('file')  end,
             {description = "dolphin", group = "launcher"}),
 
 
-    awful.key({ modkey, "Shift" },            "k",     function () 
-    awful.util.spawn('konsole')  end,
-            {description = "Konsole", group = "launcher"}),
+    awful.key({ modkey,"Control" },     "Return",      function () 
+    awful.util.spawn('kitty')  end,
+            {description = "Kitty Terminal", group = "launcher"}),
 
     awful.key({ modkey},            "g",     function ()
     awful.util.spawn('gfeeds')  end,
@@ -404,7 +405,7 @@ globalkeys = gears.table.join(
             {description = " QuteBrowser", group = "launcher"}),
 
     -- Menubar
-    awful.key({ modkey }, "p", function() awful.util.spawn("rofi -show drun -font 'Fira Code 9' -show-icons") end,
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("exec launcher") end,
             {description = "Rofi all applications", group = "launcher"})
 )
 
