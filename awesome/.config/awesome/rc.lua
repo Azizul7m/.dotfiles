@@ -384,7 +384,7 @@ globalkeys = gears.table.join(
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "e",     function () 
-    awful.util.spawn('file')  end,
+    awful.util.spawn('nautilus')  end,
             {description = "dolphin", group = "launcher"}),
 
 

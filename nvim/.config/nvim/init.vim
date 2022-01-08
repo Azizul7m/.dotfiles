@@ -8,23 +8,23 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'romgrk/barbar.nvim'
         Plug 'kyazdani42/nvim-web-devicons'
         Plug 'hrsh7th/nvim-compe'
-        Plug 'prettier/vim-prettier', { 'do': 'npm install' }
         Plug 'mattn/emmet-vim'
         Plug 'ap/vim-css-color'
         Plug 'Xuyuanp/yanil'
         Plug 'tpope/vim-commentary'
 
 
-        Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install --frozen-lockfile'}
         "lang
-        Plug 'rust-lang/rust.vim'
         Plug 'mrdotb/vim-tailwindcss'
-        Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+        "wordpress
+        Plug 'dsawardekar/wordpress.vim'
+        Plug 'https://github.com/stephpy/vim-php-cs-fixer.git' "| for php formate
+
         "lavravel
-        Plug 'tpope/vim-dispatch'             "| Optional
-        Plug 'tpope/vim-projectionist'        "|
         Plug 'noahfrederick/vim-composer'     "|
         Plug 'noahfrederick/vim-laravel'
+        Plug 'https://github.com/github/copilot.vim.git' " github copilot
         endif
     "themes staff
     Plug 'navarasu/onedark.nvim'
@@ -42,16 +42,31 @@ call plug#begin('~/.vim/pluggedNvim/')
     Plug 'liuchengxu/vim-clap'
 
     "Plug 'wfxr/minimap.vim'
-    Plug 'junegunn/vim-easy-align'
     Plug 'liuchengxu/vim-which-key'
     Plug 'sheerun/vim-polyglot'
 
     "git
     Plug 'tpope/vim-fugitive'
     Plug 'jreybert/vimagit'
-
-    "PopUp window (Suggestions)
-    Plug 'vim-scripts/AutoComplPop'
+    Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'branch': 'release/1.x',
+    \ 'for': [
+      \ 'javascript',
+      \ 'typescript',
+      \ 'css',
+      \ 'less',
+      \ 'scss',
+      \ 'json',
+      \ 'graphql',
+      \ 'markdown',
+      \ 'vue',
+      \ 'lua',
+      \ 'php',
+      \ 'python',
+      \ 'ruby',
+      \ 'html',
+      \ 'swift' ] }
 
 call plug#end()
 
@@ -59,7 +74,7 @@ call plug#end()
 
 "themes staff
 "--------------------------------------------------------------
-colorscheme nord
+colorscheme onedark
 let g:onedark_style = 'warm'
 "colorscheme onedark
 
@@ -74,7 +89,12 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
+
+autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+
+
 "Commtentary
+
 nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
@@ -102,13 +122,6 @@ let g:multi_cursor_use_default_mapping=0
 
 
 
-" vim-prettier
-let g:prettier#quickfix_enabled = 1
-let g:prettier#quickfix_auto_focus = 1
-run prettier on save
-let g:prettier#autoformat = 1
-let g:prettier#exec_cmd_async = 1
-nmap <Leader>py <Plug>(Prettier)
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 "rainbow
@@ -122,12 +135,6 @@ let g:rainbow_load_separately = [
 
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
- 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>a <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>a <Plug>(EasyAlign)
 
 
 "indentguides
@@ -142,15 +149,24 @@ filetype plugin on
 
 " Set the completefunc you can do this per file basis or with a mapping
 set completefunc=tailwind#complete
+
 " The mapping I use
-nnoremap <leader>tt :set completefunc=tailwind#complete<cr>
+" nnoremap <leader>tt :set completefunc=tailwind#complete<cr>
 " Add this autocmd to your vimrc to close the preview window after the completion is done
-autocmd CompleteDone * pclose
+" autocmd CompleteDone * pclose
 
 
 "Coc
-let g:coc_global_extensions = ['coc-json', 'coc-git']
 
+let g:coc_global_extensions = [
+    \ 'coc-tsserver',
+    \ 'coc-json',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-phpls',
+    \ 'coc-python',
+    \ 'coc-diagnostic'
+    \]
 
 
 "Dashboard
@@ -185,21 +201,19 @@ let g:NERDTreeGitStatusConcealBrackets = 1
 let g:clap_layout = { 'relative': 'editor' }
 
 
-" air-line
-let g:airline_powerline_fonts = 1
+"Neoformat
+" let g:neoformat_php_phpcbf = {
+"       \ 'exe': 'phpcbf',
+"       \ 'args': [
+"       \ '--standard=WordPress',
+"       \ ],
+"       \ 'stdin': 1,
+"       \ 'valid_exit_codes': [0,1]
+"       \ }
+" let g:neoformat_enabled_php = ['phpcbf']
+" nnoremap <leader>ns :Neoformat<cr>
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
 
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
 
 
 "KeyBinding By Azizul7m
@@ -321,10 +335,10 @@ set relativenumber
 set mouse=a
 set smarttab
 set cindent
-set tabstop=2
+set tabstop=4
 set shiftwidth=2
 set foldcolumn=1
-"set pumheight = 10 "Makes Popup menu smaller
+" set pumheight = 10 "Makes Popup menu smaller
 set signcolumn=no "Side space for git status someting like that
 set updatetime=300
 set colorcolumn=99999
@@ -332,9 +346,8 @@ set smartindent
 set expandtab smarttab
 set formatoptions=tcqrn1
 set complete+=kspell
-set wildmode=longest,list,full
-set wildmenu
-set emo
+" set wildmode=longest,list,full
+" set emo
 
 
 
@@ -344,7 +357,7 @@ set complete+=k/usr/share/dict/words
 set dict= "dictionary
 set sps=best
 set icon
-"set clipboard=unnamed
+set clipboard=unnamed
 set ph=0 "pumheight
 set pw=15 "pumwidth
 set ofu= "omnifunc
