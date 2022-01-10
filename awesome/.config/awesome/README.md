@@ -16,7 +16,7 @@ wget -qO- https://git.io/papirus-icon-theme-install | sh
 #### Arch-Based
 
 ```
-yay -S awesome rofi picom  xclip ttf-roboto polkit-gnome materia-theme lxappearance flameshot pnmixer network-manager-applet xfce4-power-manager qt5-styleplugins papirus-icon-theme -y
+yay -S awesome rofi picom  xclip ttf-roboto polkit-gnome materia-theme lxappearance flameshot pnmixer pavucontrol  network-manager-applet xfce4-power-manager qt5-styleplugins papirus-icon-theme -y
 ```
 
 #### Program list

@@ -22,7 +22,6 @@ local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batterya
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local hotkeys_popup = require("awful.hotkeys_popup")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
@@ -30,7 +29,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -248,7 +247,7 @@ awful.screen.connect_for_each_screen(function(s)
         wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 ),
         docker_widget(),
         wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
-        volume_widget(),
+        wibox.container.margin(volume_widget{widget_type = 'arc'}, 2,2,2,2, 5),
         ram_widget(),
         cpu_widget(),
         mytextclock,

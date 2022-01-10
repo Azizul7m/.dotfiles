@@ -12,8 +12,11 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'ap/vim-css-color'
         Plug 'Xuyuanp/yanil'
         Plug 'tpope/vim-commentary'
-
-
+        "Browser Sync
+        Plug 'tamago324/vim-browsersync'
+        Plug 'tyru/open-browser.vim'
+        
+        
         Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install --frozen-lockfile'}
         "lang
         Plug 'mrdotb/vim-tailwindcss'
@@ -35,6 +38,7 @@ call plug#begin('~/.vim/pluggedNvim/')
     Plug 'jiangmiao/auto-pairs'
     Plug 'scrooloose/nerdtree'
     Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+    Plug 'https://tpope.io/vim/surround.git' " Tag Changing
 
 
     "Dashboard
@@ -122,7 +126,6 @@ let g:multi_cursor_use_default_mapping=0
 
 
 
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 "rainbow
 let g:rainbow_active = 1
@@ -158,6 +161,12 @@ set completefunc=tailwind#complete
 
 "Coc
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 PrettierAsync :CocCommand prettier.formatFileAsync
+command! -nargs=0 Tailwind :CocCommand tailwind.formatFile
+command! -nargs=0 TailwindAsync :CocCommand tailwind.formatFileAsync
+command! -nargs=0 TailwindPreview :CocCommand tailwind.previewFile
+command! -nargs=0 TailwindPreviewAsync :CocCommand tailwind.previewFileAsync
 let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-json',
@@ -165,6 +174,9 @@ let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-phpls',
     \ 'coc-python',
+    \ 'coc-yaml',
+    \ 'coc-pairs',
+    \ 'coc-snippets',
     \ 'coc-diagnostic'
     \]
 
@@ -213,6 +225,14 @@ let g:clap_layout = { 'relative': 'editor' }
 " let g:neoformat_enabled_php = ['phpcbf']
 " nnoremap <leader>ns :Neoformat<cr>
 
+
+
+"BrowserSync
+nmap <leader>bs :BrowserSyncStart<CR>
+nmap <leader>bo :BrowserSyncOpen<CR>
+nmap <leader>bu :BrowserSyncOpenUI<CR>
+nmap <leader>bq :BrowserSyncStop<CR>
+nmap <leader>br :BrowserSyncReload<CR>
 
 
 
