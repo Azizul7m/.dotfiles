@@ -5,4 +5,7 @@ configuration {
   icon-theme:         "candy-icons";
 }
 //@theme "/usr/share/rofi/themes/paper-float.rasi"
-@theme "/usr/share/rofi/themes/sidebar.rasi"
+//@theme "/usr/share/rofi/themes/sidebar.rasi"
+//@theme "/usr/share/rofi/themes/docu.rasi"
+//@theme "/usr/share/rofi/themes/fancy.rasi"
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"

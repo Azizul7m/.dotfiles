@@ -6,23 +6,30 @@ call plug#begin('~/.vim/pluggedNvim/')
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'nvim-telescope/telescope.nvim'
         Plug 'romgrk/barbar.nvim'
-        Plug 'kyazdani42/nvim-web-devicons'
+        Plug 'https://github.com/preservim/tagbar.git' "Tagbar all function set form there;
         Plug 'hrsh7th/nvim-compe'
         Plug 'mattn/emmet-vim'
         Plug 'ap/vim-css-color'
         Plug 'Xuyuanp/yanil'
         Plug 'tpope/vim-commentary'
+        Plug 'https://tpope.io/vim/surround.git' " Tag Changing
+        "snippets
+        Plug 'SirVer/ultisnips'
+        Plug 'https://github.com/honza/vim-snippets.git' "Snippet file
+
+
+        Plug 'https://github.com/Valloric/MatchTagAlways.git' " Matching Tag
         "Browser Sync
         Plug 'tamago324/vim-browsersync'
         Plug 'tyru/open-browser.vim'
-        
-        
         Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install --frozen-lockfile'}
         "lang
         Plug 'mrdotb/vim-tailwindcss'
+
+
         "wordpress
+        Plug 'https://github.com/shawncplus/phpcomplete.vim.git' " PHP
         Plug 'dsawardekar/wordpress.vim'
-        Plug 'https://github.com/stephpy/vim-php-cs-fixer.git' "| for php formate
 
         "lavravel
         Plug 'noahfrederick/vim-composer'     "|
@@ -32,46 +39,37 @@ call plug#begin('~/.vim/pluggedNvim/')
     "themes staff
     Plug 'navarasu/onedark.nvim'
     "Utils
-    Plug 'terryma/vim-multiple-cursors' "Multi Cursor
+    Plug 'https://github.com/kien/ctrlp.vim.git' " CtrlP like vscode search
+    Plug 'terryma/vim-multiple-cursors'
     Plug 'arcticicestudio/nord-vim'
     Plug 'thaerkh/vim-indentguides'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'scrooloose/nerdtree'
-    Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
-    Plug 'https://tpope.io/vim/surround.git' " Tag Changing
+
+    "explorer
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
+    " Plug 'preservim/nerdtree'
+    " Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+    " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'https://github.com/vifm/vifm.vim.git' " Vifm filemanager
 
 
     "Dashboard
     Plug 'glepnir/dashboard-nvim'
     Plug 'liuchengxu/vim-clap'
+    Plug 'tpope/vim-fugitive'
+    Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 
     "Plug 'wfxr/minimap.vim'
     Plug 'liuchengxu/vim-which-key'
     Plug 'sheerun/vim-polyglot'
 
     "git
-    Plug 'tpope/vim-fugitive'
     Plug 'jreybert/vimagit'
+    " post install (yarn install | npm install) then load plugin only for editing supported files
     Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'branch': 'release/1.x',
-    \ 'for': [
-      \ 'javascript',
-      \ 'typescript',
-      \ 'css',
-      \ 'less',
-      \ 'scss',
-      \ 'json',
-      \ 'graphql',
-      \ 'markdown',
-      \ 'vue',
-      \ 'lua',
-      \ 'php',
-      \ 'python',
-      \ 'ruby',
-      \ 'html',
-      \ 'swift' ] }
-
+      \ 'do': 'yarn install --frozen-lockfile --production',
+      \ 'for': ['javascript', 'php' ,'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
 
 
@@ -98,10 +96,12 @@ autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
 
 "Commtentary
-
 nnoremap <space>/ :Commentary<CR>
 vnoremap <space>/ :Commentary<CR>
 
+
+
+nnoremap <space>v :TabVifm<CR>
 
 
 
@@ -161,8 +161,6 @@ set completefunc=tailwind#complete
 
 "Coc
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-command! -nargs=0 PrettierAsync :CocCommand prettier.formatFileAsync
 command! -nargs=0 Tailwind :CocCommand tailwind.formatFile
 command! -nargs=0 TailwindAsync :CocCommand tailwind.formatFileAsync
 command! -nargs=0 TailwindPreview :CocCommand tailwind.previewFile
@@ -181,6 +179,14 @@ let g:coc_global_extensions = [
     \]
 
 
+
+
+autocmd ColorScheme *
+  \ hi CocExplorerNormalFloatBorder guifg=#414347 guibg=#272B34
+  \ | hi CocExplorerNormalFloat guibg=#272B34
+  \ | hi CocExplorerSelectUI guibg=blue
+
+
 "Dashboard
 
 "markdown
@@ -196,9 +202,9 @@ let g:webdevicons_enable_unite = 1
 let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_airline_tabline = 1
 
-
-
-
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
 "NERDTree
 let g:NERDTreeGitStatusUseNerdFonts = 1
@@ -207,10 +213,28 @@ let g:NERDTreeGitStatusShowClean = 1
 let g:NERDTreeGitStatusConcealBrackets = 1
 
 
-
 "
 "Clap
 let g:clap_layout = { 'relative': 'editor' }
+
+
+"Prettier
+nmap <Leader>py <Plug>(Prettier)
+
+" vim-prettier
+let g:prettier#quickfix_enabled = 1
+let g:prettier#quickfix_auto_focus = 1
+run prettier on save
+autocmd BufWritePre  *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html,*.php PrettierAsync
+
+
+
+let g:phpcomplete_mappings = {
+  \ 'jump_to_def': ',g',
+  \ 'jump_to_def_tabnew': ',t',
+  \ }
+
+
 
 
 "Neoformat
@@ -225,6 +249,8 @@ let g:clap_layout = { 'relative': 'editor' }
 " let g:neoformat_enabled_php = ['phpcbf']
 " nnoremap <leader>ns :Neoformat<cr>
 
+" UltiSnips
+let g:UltiSnipsEditSplit="vertical"
 
 
 "BrowserSync
@@ -240,9 +266,10 @@ nmap <leader>br :BrowserSyncReload<CR>
 "-----------------------------------------------------------------"
 let mapleader = " "
 inoremap jk <ESC>
-nmap <leader>nt :NERDTree<CR>
-nmap <leader>e :NERDTreeToggle<CR>
-nmap <leader>nf :NERDTreeFind<CR>
+" nmap <leader>nt :NERDTree<CR>
+nmap <leader>e :CocCommand explorer<CR>
+" nmap <leader>e :NERDTreeToggle<CR>
+" nmap <leader>nf :NERDTreeFind<CR>
 
 "markdown
 nmap <leader>mp <Plug>MarkdownPreview
@@ -366,6 +393,8 @@ set smartindent
 set expandtab smarttab
 set formatoptions=tcqrn1
 set complete+=kspell
+set complete-=nofold
+set mps+=<:> "Matching pairs
 " set wildmode=longest,list,full
 " set emo
 

@@ -402,8 +402,8 @@ colors: *doom-one
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-#visual_bell:
-#  animation: EaseOutExpo
+bell:
+  animation: EaseOutExpo
 #  duration: 0
 #  color: '#ffffff'
 
@@ -520,8 +520,8 @@ live_config_reload: true
 #   - (macOS) open
 #   - (Linux/BSD) xdg-open
 #   - (Windows) explorer
-#launcher:
-#  program: xdg-open
+launcher:
+  program: xdg-open
 #  args: []
 
 # URL modifiers
@@ -670,3 +670,6 @@ key_bindings:
   - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
   - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
+  # Vi Mode
+  - { key: Space,  mods: Shift,       mode: Vi, action: ScrollToBottom          }
+  - { key: Space,  mods: Shift,                 action: ToggleViMode            }
