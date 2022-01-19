@@ -31,6 +31,9 @@ local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightne
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -93,7 +96,7 @@ awful.layout.layouts = {
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
-    awful.layout.suit.magnifier,
+    -- awful.layout.suit.magnifier,
     --awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -248,6 +251,18 @@ awful.screen.connect_for_each_screen(function(s)
         -- wibox.widget.systray(),
         wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 ),
         docker_widget(),
+        todo_widget(),
+        wibox.container.margin( weather_widget({
+                api_key='25c26dcbac6d93bad5db8f015f88cdd1',
+                coordinates = {25.7439, 89.2752},
+                time_format_12h = true,
+                units = 'imperial',
+                both_units_widget = true,
+                icons = 'VitalyGorbachev',
+                icons_extension = '.svg',
+                show_hourly_forecast = true,
+                show_daily_forecast = true,
+                 }) , 5,10,2,2, 2 ),
         wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
         wibox.container.margin(volume_widget{widget_type = 'arc'}, 2,2,2,2, 5),
         ram_widget(),

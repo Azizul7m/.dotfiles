@@ -1,7 +1,7 @@
 import setproctitle
 setproctitle.setproctitle("qutebrowser")
-import dracula.draw
 
+config.source('onedark.py')
 
 # Bindings
 config.bind("gi", "hint inputs")
@@ -45,12 +45,6 @@ c.aliases = {
 # Load existing settings made via :set
 config.load_autoconfig()
 
-dracula.draw.blood(c, {
-    'spacing': {
-        'vertical': 6,
-        'horizontal': 8
-    }
-})
 
 # Always restore open sites when qutebrowser is reopened.
 c.auto_save.session = False

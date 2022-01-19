@@ -254,8 +254,8 @@ alias doompurge="~/.emacs.d/bin/doom purge"
 # pacman and yay
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
 alias sps='sudo pacman -S'
-alias ys='yay -S'
-alias yss='yay -Ss'
+alias yy='yay '
+alias yss='yay -S'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
 alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
@@ -280,6 +280,11 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Tmux
+
+alias tas='tmux attach-session -c '
+alias tns='tmux new-session -s '
+
 # adding flags
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -293,6 +298,7 @@ alias docksocket="sudo systemctl stop docker.socket"
 alias dockstatus="sudo systemctl status docker.service"
 alias dockps="sudo docker ps"
 alias dockimags="sudo docker images"
+alias dc="docker-compose "
 
 
 
@@ -319,6 +325,7 @@ alias pull='git pull origin'
 alias push='git push origin'
 alias tag='git tag'
 alias newtag='git tag -a'
+alias gstatus='git status'
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
@@ -365,11 +372,16 @@ alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-ba
 # backup contents of /etc/skel to hidden backup folder in $HOME.
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-(date +%Y.%m.%d-%H.%M.%S)'
 
+
+
+
+
+
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
 
-# fm6000 -r -c random
+fm6000 -r -c random
 # https://github.com/anhsirk0/fetch-master-6000
 
 ### SETTING THE STARSHIP PROMPT ###
