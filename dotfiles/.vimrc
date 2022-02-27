@@ -8,11 +8,10 @@ Plug 'ap/vim-css-color'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'frazrepo/vim-rainbow'
-
+plug 'arcticicestudio/nord-vim'
 "Utils
-Plug 'arcticicestudio/nord-vim'
 Plug 'thaerkh/vim-indentguides'
-"Plug 'wfxr/minimap.vim'
+Plug 'wfxr/minimap.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'liuchengxu/vim-which-key'
@@ -66,11 +65,12 @@ set complete+=k/usr/share/dict/words
 set dict= "dictionary
 set sps=best
 set icon
-"set clipboard=unnamed
+set clipboard=unnamedplus
 set ph=0 "pumheight
 set pw=15 "pumwidth
 set ofu= "omnifunc
 set sm "showmatch
+let g:netrw_winsize=25 "netrw window size in lines  
 
 set undodir=/tmp
 set directory=/tmp//,.
@@ -118,34 +118,6 @@ run prettier on save
 let g:prettier#autoformat = 1
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 "
-
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
-
-" Using CocList
-" Show all diagnostics
-nnoremap <leader>ca  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <leader>ce  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <leader>cc  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <leader>co  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <leader>cs  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <leader>cj  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <leader>ck  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <leader>cp  :<C-u>CocListResume<CR>
 
 "rainbow
 "let g:rainbow_active = 1

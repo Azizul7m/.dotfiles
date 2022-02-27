@@ -36,6 +36,7 @@ config.bind("<ctrl+q>", "wq")
 c.aliases = {
     "w": "session-save",
     "wq": "quit --save",
+    # TODO: mpv
     "mpv": "spawn -d mpv --force-window=immediate {url}",
     "nicehash": "spawn --userscript nicehash",
     "pass": "spawn -d pass -c",
@@ -153,7 +154,7 @@ c.input.insert_mode.auto_leave = True
 
 # Automatically enter insert mode if an editable element is focused
 # after loading the page.
-c.input.insert_mode.auto_load = True
+c.input.insert_mode.auto_load = False
 
 
 # Enable smooth scrolling for web pages. Note smooth scrolling does not

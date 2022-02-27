@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:							"Museo Sans 18";
+	font:							"mononoki 11";
     show-icons:                     false;
 	icon-theme: 					"Papirus";
     drun-display-format:            "{name}";
