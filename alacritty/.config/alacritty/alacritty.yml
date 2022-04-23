@@ -159,14 +159,14 @@ font:
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
-    # family: JetBrains Mono
+    family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     # family: Mononoki Nerd Font
     # family: Mononoki
     # family: OperatorMono
-    family: Dank Mono
+    # family: Dank Mono
     # family: monolisa
     # family: CascadiaMono
     # family: Cousine
