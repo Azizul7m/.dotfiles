@@ -8,7 +8,7 @@ Plug 'ap/vim-css-color'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'frazrepo/vim-rainbow'
-plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 "Utils
 Plug 'thaerkh/vim-indentguides'
 Plug 'wfxr/minimap.vim'
@@ -145,8 +145,8 @@ let g:indentguides_ignorelist = ['text']
 
 
 "emmet
-let g:user_emmet_leader_key=','
-filetype plugin on
+"let g:user_emmet_leader_key=','
+"filetype plugin on
 
 "KeyBinding By Azizul7m
 "-----------------------------------------------------------------"

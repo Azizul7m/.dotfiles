@@ -384,8 +384,10 @@ globalkeys = gears.table.join(
             {description = "run dmenu ", group = "launcher"}),
 
     awful.key({ "Mod1" },   "space",     function () 
-    awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
+    awful.util.spawn("xlunch")  end,
             {description = "Active Windows", group = "launcher"}),
+
+    -- awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
 
     awful.key({ "Mod1" },   "F4",     function () 
     awful.spawn.with_shell("applet_powermenu")  end,
@@ -396,12 +398,12 @@ globalkeys = gears.table.join(
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('pcmanfm')  end,
+    awful.util.spawn('nautilus')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "e",     function () 
-    awful.util.spawn('nautilus')  end,
-            {description = "dolphin", group = "launcher"}),
+    awful.util.spawn('pcmanfm')  end,
+            {description = "PcManFm file manager", group = "launcher"}),
 
 
     awful.key({ modkey,"Control" },     "Return",      function () 

@@ -55,23 +55,27 @@
 ;;(define-key evil-insert-state-map(kbd "kj") 'evil-normal-state)
 (setq make-backup-files nil) ; stop creating backup~ files
 
-;;tailwind lsp
+(beacon-mode 1)
 
-(use-package! lsp-tailwindcss)
+(setq clippy-tip-show-function #'clippy-popup-tip-show)
 
-(customize-set-variable 'copilot-enable-predicates '(evil-insert-state-p))
-; complete by copilot first, then company-mode
+(after! lsp-tailwindcss
+  (setq lsp-tailwindcss-major-modes '(typescript-tsx-mode rjsx-mode web-mode html-mode css-mode svelte-mode)))
+
+
+;; accept completion from copilot and fallback to company
 (defun my-tab ()
   (interactive)
   (or (copilot-accept-completion)
       (company-indent-or-complete-common nil)))
 
-; modify company-mode behaviors
-(with-eval-after-load 'company
-  ; disable inline previews
-  (delq 'company-preview-if-just-one-frontend company-frontends)
-  ; enable tab completion
-  (define-key company-mode-map (kbd "<tab>") 'my-tab)
-  (define-key company-mode-map (kbd "TAB") 'my-tab)
-  (define-key company-active-map (kbd "<tab>") 'my-tab)
-  (define-key company-active-map (kbd "TAB") 'my-tab))
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ("C-<tab>" . 'copilot-accept-completion-by-word)
+         :map company-active-map
+         ("<tab>" . 'my-tab)
+         ("TAB" . 'my-tab)
+         :map company-mode-map
+         ("<tab>" . 'my-tab)
+         ("TAB" . 'my-tab)))
