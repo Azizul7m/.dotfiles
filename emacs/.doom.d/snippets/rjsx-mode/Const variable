@@ -1,0 +1,4 @@
+# key: cns
+# name: Const variable
+# --
+const ${1:Name} = ${2:};

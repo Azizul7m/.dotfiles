@@ -4,6 +4,7 @@
 #
 # Executed by startx (run your window manager from here)
 
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -62,5 +63,10 @@ get_session(){
 
     echo "dbus-launch ${dbus_args[*]}"
 }
+
+
+/usr/bin/pipewire &
+/usr/bin/pipewire-pulse &
+/usr/bin/pipewire-media-session &
 
 exec $(get_session "$1")

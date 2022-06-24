@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Const Variable
+# key: con
+# --
+const ${1:Name} = ${2};

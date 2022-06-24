@@ -1,0 +1,10 @@
+# key: rfc
+# name: State Less Components
+# --
+const ${1:Name} = () => {
+  return(
+  <>
+    ${2:}
+  </>
+ )
+}

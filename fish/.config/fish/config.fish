@@ -10,6 +10,7 @@ set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "vim"                 # $EDITOR use Emacs in terminal
 set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
 
+
 ### SET MANPAGER
 ### Uncomment only one of these!
 
@@ -27,6 +28,24 @@ function fish_user_key_bindings
   # fish_default_key_bindings
   fish_vi_key_bindings
 end
+
+# lf
+
+function lfcd
+    set tmp (mktemp)
+    lf -last-dir-path=$tmp $argv
+    if test -f "$tmp"
+        set dir (cat $tmp)
+        rm -f $tmp
+        if test -d "$dir"
+            if test "$dir" != (pwd)
+                cd $dir
+            end
+        end
+    end
+end
+
+
 ### END OF VI MODE ###
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
@@ -246,6 +265,7 @@ alias cls="clear"
 
 # vim and emacs
 alias em='emacs -nw'
+alias emd='emacs --daemon'
 alias doomsync="~/.emacs.d/bin/doom sync"
 alias doomdoctor="~/.emacs.d/bin/doom doctor"
 alias doomupgrade="~/.emacs.d/bin/doom upgrade"
@@ -387,3 +407,5 @@ fm6000 -r -c random
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
 
+
+## Locale

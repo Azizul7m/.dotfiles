@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:Arrow Function
+# key: =>
+# --
+const ${1:Name} = () => {
+  ${2:}
+}

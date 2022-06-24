@@ -1,0 +1,4 @@
+# key: log
+# name: Console log
+# --
+console.log(${})

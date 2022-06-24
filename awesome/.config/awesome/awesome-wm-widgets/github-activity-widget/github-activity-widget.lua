@@ -278,9 +278,9 @@ local function worker(user_args)
 
     -- Calls GitHub event API and stores response in "cache" file
     gears.timer {
-        timeout   = 600,
+        timeout   = 1200,
         call_now  = true,
-        autostart = true,
+        autostart = false,
         callback  = function()
             spawn.easy_async(string.format(UPDATE_EVENTS_CMD, username, CACHE_DIR), function(_, stderr)
                 if stderr ~= '' then show_warning(stderr) return end

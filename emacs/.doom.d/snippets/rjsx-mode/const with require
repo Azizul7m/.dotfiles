@@ -1,0 +1,4 @@
+# key: cnr
+# name: const with require
+# --
+const ${1:Name} = require('${2:module}');

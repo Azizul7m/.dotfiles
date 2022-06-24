@@ -1,7 +1,6 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-local vicious = require("vicious")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -19,11 +18,10 @@ require("collision")()
 
 --widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+-- local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local docker_widget = require("awesome-wm-widgets.docker-widget.docker")
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
@@ -31,8 +29,11 @@ local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightne
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
-local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+-- local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+
+local switcher = require("awesome-switcher")
+
 
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -246,26 +247,25 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
 
-        spotify_widget(),
         net_speed_widget(),
         -- wibox.widget.systray(),
         wibox.container.margin(wibox.widget.systray(), 5,10,2,2, 2 ),
         docker_widget(),
         todo_widget(),
-        wibox.container.margin( weather_widget({
-                api_key='25c26dcbac6d93bad5db8f015f88cdd1',
-                coordinates = {25.672426, 89.476456},
-                time_format_12h = true,
-                units = 'imperial',
-                both_units_widget = true,
-                icons = 'VitalyGorbachev',
-                icons_extension = '.svg',
-                show_hourly_forecast = true,
-                show_daily_forecast = true,
-                 }) , 5,10,2,2, 2 ),
+        -- wibox.container.margin( weather_widget({
+        --         api_key='25c26dcbac6d93bad5db8f015f88cdd1',
+        --         coordinates = {25.672426, 89.476456},
+        --         time_format_12h = true,
+        --         units = 'imperial',
+        --         both_units_widget = true,
+        --         icons = 'VitalyGorbachev',
+        --         icons_extension = '.svg',
+        --         show_hourly_forecast = true,
+        --         show_daily_forecast = true,
+        --          }) , 5,10,2,2, 2 ),
         wibox.container.margin(batteryarc_widget(), 2,2,2,2, 5),
         wibox.container.margin(volume_widget{widget_type = 'arc'}, 2,2,2,2, 5),
-        ram_widget(),
+        -- ram_widget(),
         cpu_widget(),
         mytextclock,
         mytextclock:connect_signal("button::press", 
@@ -318,7 +318,17 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-", false) end),
     awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle", false) end),
 
-    awful.key({ modkey, "Mod1" }, "l", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end, 
+    awful.key({ "Mod1",           }, "Tab",
+      function ()
+          switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab")
+      end),
+    
+    awful.key({ "Mod1", "Shift"   }, "Tab",
+      function ()
+          switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
+      end),
+
+    awful.key({ "Mod1" }, "F4", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end,
         {description = "Show logout screen", group = "custom"}),
 
     -- Layout manipulation
@@ -383,15 +393,14 @@ globalkeys = gears.table.join(
     awful.util.spawn(" dmenu_run -fn 'Operator Mono' -x '450' -y '250' -h '5' -w '500'  -p 'Run: ' ")  end,
             {description = "run dmenu ", group = "launcher"}),
 
-    awful.key({ "Mod1" },   "space",     function () 
-    awful.util.spawn("xlunch")  end,
+    awful.key({ "Mod1" },   "space",     function ()
+    awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
             {description = "Active Windows", group = "launcher"}),
 
-    -- awful.util.spawn("rofi -combi-modi window,drun -show combi -modi combi -font 'DejaVu Sans 10' -show-icons")  end,
 
-    awful.key({ "Mod1" },   "F4",     function () 
-    awful.spawn.with_shell("applet_powermenu")  end,
-            {description = "Power Menue (Rofi)", group = "launcher"}),
+    -- awful.key({ "Mod1" },   "F4",     function ()
+    -- awful.spawn.with_shell("applet_powermenu")  end,
+    --         {description = "Power Menue (Rofi)", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "f",     function () 
     awful.spawn.with_shell('~/.config/awesome/dws.sh')  end,
@@ -419,8 +428,8 @@ globalkeys = gears.table.join(
             {description = " Firefox", group = "launcher"}),
 
     awful.key({ modkey, "Shift"  },            "b",     function () 
-    awful.util.spawn('qutebrowser')  end,
-            {description = " QuteBrowser", group = "launcher"}),
+    awful.util.spawn('google-chrome-stable')  end,
+            {description = "Chrome", group = "launcher"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() awful.spawn.with_shell("exec launcher") end,
@@ -575,6 +584,10 @@ awful.rules.rules = {
           "vlc",
           "mpv",
           "buddy",
+          "PureRef",
+          "pavucontrol",
+          "qbittorrent",
+          "gcolor3",
         },
         class = {
           "Arandr",
@@ -638,7 +651,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --autostart
 
 awful.spawn.with_shell("exec ~/.config/awesome/autostart.sh")
-awful.spawn.with_shell("Wallpaper")
+awful.spawn.with_shell("exec nitrogen --restore")
+awful.spawn.with_shell("picom -b --experimental-backends --config ~/.config/picom.conf")
 -- awful.spawn.with_shell("kmix")
 
 --Gaps

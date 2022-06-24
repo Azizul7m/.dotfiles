@@ -1,4 +1,4 @@
-"""Plug
+"d""Plug
 call plug#begin('~/.vim/plugged')
 Plug 'ap/vim-css-color'
 
@@ -11,7 +11,6 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'arcticicestudio/nord-vim'
 "Utils
 Plug 'thaerkh/vim-indentguides'
-Plug 'wfxr/minimap.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'liuchengxu/vim-which-key'
@@ -56,7 +55,7 @@ set colorcolumn=99999
 set smartindent
 set expandtab smarttab
 set formatoptions=tcqrn1
-set emo
+"set emo
 set wildmode=longest,list,full
 set completeopt+=menuone,longest
 "Utils
@@ -66,7 +65,7 @@ set dict= "dictionary
 set sps=best
 set icon
 set clipboard=unnamedplus
-set ph=0 "pumheight
+"set ph=0 "pumheight
 set pw=15 "pumwidth
 set ofu= "omnifunc
 set sm "showmatch
