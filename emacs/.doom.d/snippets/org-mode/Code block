@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Code block
+# key: <a
+# --
+#+begin_src ${1:lang}
+${2:}
+#+end_src

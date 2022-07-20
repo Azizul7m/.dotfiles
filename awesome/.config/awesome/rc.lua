@@ -328,7 +328,7 @@ globalkeys = gears.table.join(
           switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
       end),
 
-    awful.key({ "Mod1" }, "F4", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end,
+    awful.key({ "Mod1" }, "l", function() logout_popup.launch({bg_color = "#0b0c10", accent_color = "#1f2833", text_color = '#66fce1',}) end,
         {description = "Show logout screen", group = "custom"}),
 
     -- Layout manipulation

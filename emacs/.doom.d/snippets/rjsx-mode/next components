@@ -1,0 +1,7 @@
+# key: nextcom
+# name: next components
+# --
+export default function ${1:App}({${2:}}) {
+  return(
+    ${3:}
+)}

@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -204,6 +205,18 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+
+export DICTIONARY=en_US
+export DICPATH=~/.config/hunspell/
+
+
+
 
 export LANG="en-US.UTF-8"
 
@@ -219,3 +232,12 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 exec fish
 
 . ~/.nvm/nvm.sh
+
+# pnpm
+export PNPM_HOME="/home/anower/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+
+BUN_INSTALL="~/.bun"
+PATH="$BUN_INSTALL/bin:$PATH"

@@ -3,8 +3,9 @@
 # --
 const ${1:Name} = () => {
   return(
-  <>
-    ${2:}
-  </>
+  <div>
+    ${3:}
+  </div>
  )
 }
+export default ${2:Name};

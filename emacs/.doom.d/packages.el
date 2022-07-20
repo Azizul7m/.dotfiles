@@ -11,6 +11,19 @@
 (package! path-iterator)
 (package! smooth-scrolling)
 (package! beacon)
+(package! evil-mc)
+(package! mermaid-mode)
+(package! ob-mermaid)
+;;dotnet
+(package! omnisharp)
+(package! csproj-mode)
+(package! csharp-mode)
+;;html css sass
+(package! ac-html-csswatcher)
+
+;;Rust
+(package! ob-rust)
+
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
@@ -24,8 +37,6 @@
 ;(package! this-package
 ;  :recipe (:host github :repo "username/repo"
 ;           :files ("some-file.el" "src/lisp/*.el")))
-
-(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))

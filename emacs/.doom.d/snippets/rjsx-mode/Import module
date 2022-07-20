@@ -1,0 +1,4 @@
+# key: imt
+# name: Import module
+# --
+import ${2:'module'} from '${1:module}';

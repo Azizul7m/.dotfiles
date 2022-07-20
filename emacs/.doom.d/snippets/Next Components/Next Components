@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Next Components
+# key: nextcom
+# --
+
+export default function ${1:Pages}({${2:}}) {
+  return(
+    ${:3}
+  )
+}

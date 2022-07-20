@@ -43,17 +43,30 @@
 (smooth-scrolling-mode 1)
 (beacon-mode 1)
 
-(set-frame-parameter nil 'alpha-background 85) ; For current frame
-(add-to-list 'default-frame-alist '(alpha-background . 85)) ; For all new frames henceforth
+
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+
+(setq display-line-numbers-type 'relative)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
+
+;; org-mode
 (setq org-directory "~/org/")
+(setq org-hide-emphasis-markers t)
+
+;; Journal config
+;;
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-format "%I:%M %p "
+      org-journal-time-prefix "* "
+      org-journal-date-format "%A, %d/%m/%Y"
+      org-journal-file-format "%d-%m-%Y.org")
+
+
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -67,6 +80,7 @@
   :config
   (global-company-mode)
   (setq company-idle-delay 0.01)
+  (setq company-tooltip-limit 20)
   (setq company-minimum-prefix-length 2))
 
 
@@ -75,10 +89,52 @@
   (setq yas-snippet-dirs '("~/.dotfiles/emacs/.doom.d/snippets"))
   (yas-global-mode 1))
 
+;;web mode
+(setq web-mode-enable-current-element-highlight 1)
 
 
-(setq web-mode-enable-current-element-highlight t)
+;; dotnet
+(eval-after-load
+  'company
+  '(add-to-list 'company-backends #'company-omnisharp #'company-files #'company-dabbrev-code))
 
+(defun my-csharp-mode-setup ()
+  (omnisharp-mode)
+  (company-mode)
+  (flycheck-mode)
+
+  (setq indent-tabs-mode nil)
+  (setq c-syntactic-indentation t)
+  (c-set-style "ellemtel")
+  (setq c-basic-offset 4)
+  (setq truncate-lines t)
+  (setq tab-width 4)
+  (setq evil-shift-width 4)
+
+  ;csharp-mode README.md recommends this too
+  ;(electric-pair-mode 1)       ;; Emacs 24
+  ;(electric-pair-local-mode 1) ;; Emacs 25
+
+  (electric-pair-local-mode 1)
+  (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
+  (local-set-key (kbd "C-c C-c") 'recompile))
+
+;; (eval-after-load
+;;  'company
+;;  '(add-to-list 'company-backends 'company-omnisharp))
+
+;; (add-hook 'csharp-mode-hook #'company-mode)
+;; (add-hook 'csharp-mode-hook #'lsp!)
+
+;; (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
+;; ;; Diagram flowchart mermaid
+
+(setq ob-mermaid-cli-path "/usr/bin/mmdc")
+(org-babel-do-load-languages
+    'org-babel-load-languages
+    '((mermaid . t)
+      (scheme . t)
+      ))
 
 
 ;; The exceptions to this rule:
@@ -124,4 +180,18 @@
          :map company-mode-map
          ("<tab>" . 'my-tab)
          ("TAB" . 'my-tab)))
-
+;; todo:
+(use-package hl-todo
+:hook ((prog-mode . hl-todo-mode)
+        (org-mode . hl-todo-mode)
+        (web-mode . hl-todo-mode)
+        (rjsx-mode . hl-todo-mode))
+:config
+(setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+        ("FIXME"      error bold)
+        ("HACK"       font-lock-constant-face bold)
+        ("REVIEW"     font-lock-keyword-face bold)
+        ("NOTE"       success bold)
+        ("DEPRECATED" font-lock-doc-face bold))))

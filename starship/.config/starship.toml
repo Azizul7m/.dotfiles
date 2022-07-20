@@ -8,4 +8,9 @@ success_symbol = "[](bold green)"     # The "success_symbol" segment is being
 # Disable the package module, hiding it from the prompt completely
 #[package]
 #disabled = true
+format = "$all"
 
+[dotnet]
+format = "via [$symbol($version )( $tfm )]($style)"
+symbol = " "
+style = "bold italic yellow"
