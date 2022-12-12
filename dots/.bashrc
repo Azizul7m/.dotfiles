@@ -228,5 +228,3 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-BUN_INSTALL="~/.bun"
-PATH="$BUN_INSTALL/bin:$PATH"
