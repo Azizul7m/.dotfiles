@@ -12,12 +12,13 @@ local awful = require("awful")
 local wibox = require("wibox")
 local watch = require("awful.widget.watch")
 
-local GET_SPOTIFY_STATUS_CMD = 'sp status'
-local GET_CURRENT_SONG_CMD = 'sp current'
-
 local function ellipsize(text, length)
-    return (text:len() > length and length > 0)
-        and text:sub(0, length - 3) .. '...'
+    -- utf8 only available in Lua 5.3+
+    if utf8 == nil then
+        return text:sub(0, length)
+    end
+    return (utf8.len(text) > length and length > 0)
+        and text:sub(0, utf8.offset(text, length - 2) - 1) .. '...'
         or text
 end
 
@@ -35,6 +36,10 @@ local function worker(user_args)
     local max_length = args.max_length or 15
     local show_tooltip = args.show_tooltip == nil and true or args.show_tooltip
     local timeout = args.timeout or 1
+    local sp_bin = args.sp_bin or 'sp'
+
+    local GET_SPOTIFY_STATUS_CMD = sp_bin .. ' status'
+    local GET_CURRENT_SONG_CMD = sp_bin .. ' current'
 
     local cur_artist = ''
     local cur_title = ''
@@ -47,8 +52,17 @@ local function worker(user_args)
             widget = wibox.widget.textbox,
         },
         {
-            id = "icon",
-            widget = wibox.widget.imagebox,
+            layout = wibox.layout.stack,
+            {
+                id = "icon",
+                widget = wibox.widget.imagebox,
+            },
+            {
+                widget = wibox.widget.textbox,
+                font = font,
+                text = ' ',
+                forced_height = 1
+            }
         },
         {
             layout = wibox.container.scroll.horizontal,
@@ -63,7 +77,7 @@ local function worker(user_args)
         },
         layout = wibox.layout.align.horizontal,
         set_status = function(self, is_playing)
-            self.icon.image = (is_playing and play_icon or pause_icon)
+            self:get_children_by_id('icon')[1]:set_image(is_playing and play_icon or pause_icon)
             if dim_when_paused then
                 self:get_children_by_id('icon')[1]:set_opacity(is_playing and 1 or dim_opacity)
 

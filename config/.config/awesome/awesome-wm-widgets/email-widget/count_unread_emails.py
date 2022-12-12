@@ -4,7 +4,7 @@ import imaplib
 import re
 
 M=imaplib.IMAP4_SSL("mail.teenagemutantninjaturtles.com", 993)
-M.login("azizul7m@gmail.com","29498547")
+M.login("mickey@tmnt.com","cowabunga")
 
 status, counts = M.status("INBOX","(MESSAGES UNSEEN)")
 

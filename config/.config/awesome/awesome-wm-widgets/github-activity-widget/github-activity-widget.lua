@@ -278,7 +278,7 @@ local function worker(user_args)
 
     -- Calls GitHub event API and stores response in "cache" file
     gears.timer {
-        timeout   = 1200,
+        timeout   = 600,
         call_now  = true,
         autostart = true,
         callback  = function()
