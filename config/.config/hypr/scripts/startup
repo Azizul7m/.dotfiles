@@ -1,0 +1,43 @@
+#!/bin/bash
+
+SDIR=$HOME/.config/hypr/scripts
+
+# Start swhkd
+# ${SCRIPTSDIR}hotkeys &
+
+function run {
+  if ! pgrep $1; then
+    $@ &
+  fi
+}
+
+#autorandr horizontal
+#run caffeine
+#run 'variety'
+#run '~/.config/awesome/wallpaper.sh'
+#run conky -c $HOME/.config/awesome/system-overview
+run 'nm-applet'
+#run 'pnmixer'
+run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)'
+#run 'xfce4-power-manager'
+#run 'flameshot',
+#run 'synology-drive -minimized',
+#run 'steam -silent',
+# run  'feh --randomize --bg-fill ~/.wallpapers/',
+# run nitrogen,
+#run 'gnome-pie'
+# run 'picom -b --experimental-backends --config ~/.config/picom.conf'
+run 'clipster -d'
+# run 'pidgin'
+# run 'telegram-desktop'
+# run 'qbittorrent'
+#you can set wallpapers in themes as well
+#run applications from startup
+#run firefox
+#run atom
+#run dropbox
+#run insync start
+#run spotify
+#run ckb-next -b
+#run discord
+exec waybar -s ~/.config/hypr/waybar/style.css  -c ~/.config/hypr/waybar/config &

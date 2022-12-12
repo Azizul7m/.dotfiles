@@ -1,0 +1,2 @@
+"emacsclient --eval '(emacs-everywhere)'"
+  Alt + Mod4 + e
