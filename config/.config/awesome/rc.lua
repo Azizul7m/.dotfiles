@@ -413,7 +413,7 @@ globalkeys = gears.table.join(
             {description = "Emoji Picker", group = "launcher"}),
 
     awful.key({modkey, "Mod1" },   "i",     function ()
-    awful.spawn.with_shell("org-popup.sh t")  end,
+    awful.spawn.with_shell("emacsclient --eval '(+org-capture/open-frame)'")  end,
             {description = "Road Note Take", group = "launcher"}),
 
     awful.key({modkey, "Control" },   "i",     function ()

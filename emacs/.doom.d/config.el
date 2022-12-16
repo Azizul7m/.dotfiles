@@ -120,7 +120,7 @@
   (setq company-minimum-prefix-length 1))
 
 (after! company
-  (setq +lsp-company-backends '(company-dabbrev :separate company-capf :separate company-wordfreq company-yasnippet))
+  (setq +lsp-company-backends '( company-yasnippet :separate company-capf  :separate company-dabbrev :separate company-wordfreq))
   (setq company-show-quick-access t)
 )
 
@@ -149,8 +149,8 @@
 (setq counsel-dash-common-docsets '("JavaScript" "HTML" ))
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq-local counsel-dash-docsets '("Emacs Lisp"))))
 (add-hook 'rjsx-mode-hook (lambda () (setq-local counsel-dash-docsets '("React" "JavaScript"))))
-(add-hook 'typescript-mode-hook (lambda () (setq-local counsel-dash-docsets '("TypeScript" "React"))))
-(add-hook 'typescript-tsx-mode-hook (lambda () (setq-local counsel-dash-docsets '("TypeScript" "React"))))
+(add-hook 'typescript-mode-hook (lambda () (setq-local counsel-dash-docsets '("TypeScript" "React" "JavaScript"))))
+(add-hook 'typescript-tsx-mode-hook (lambda () (setq-local counsel-dash-docsets '("TypeScript" "React" "JavaScript"))))
 
 (setq
  browse-url-browser-function 'eww-browse-url ; Use eww as the default browser
@@ -161,9 +161,19 @@
  eww-search-prefix "https://google.com/search?q=%s")    ; Use another engine for searching
 (global-set-key (kbd "C-c w") 'eww-search-words)
 
+
+;; Translate
+(setq google-translate-default-source-language "auto")  ; Auto detect language.
+(setq google-translate-default-target-language "bn")    ; Set your target language.
+(setq define-it-output-choice 'view)  ; Output with buffer.
+(global-set-key (kbd "C-c s") 'define-it-at-point)
+(global-set-key (kbd "C-c W") 'define-it)
+
 ;;IRC irc
 ;; (erc :server "irc.libera.chat" :port "6697" :nick "ANOWER" :password "@/947M")
-
+;; (setq erc-autojoin-channels-alist
+;;           '(("irc.libera.chat" "#emacs" "#nethack")))
+;;     (erc :server "irc.libera.chat" :port 6667 :nick "ANOWER" :password "@\3121")
 
 ;; (use-package lsp-mode
 ;;   :custom

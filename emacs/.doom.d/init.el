@@ -181,7 +181,7 @@
        :email
        ;;(mu4e +org +gmail)
        ;;notmuch
-       ;;(wanderlust +gmail)
+       (wanderlust +outlook)
 
        :app
        calendar

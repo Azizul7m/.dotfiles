@@ -22,6 +22,7 @@
 (package! counsel-dash)
 (package! helm-dash)
 (package!  esqlite-helm)
+(package! define-it)
 ;; (package! company-tabnine)
 
 

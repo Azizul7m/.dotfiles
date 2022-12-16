@@ -18,6 +18,6 @@ elif [[ "$1" ]]; then
 	DATA=$(yad --form --field '!:TXT' "$DEF" --undecorated --width 700 --height 300 --center --no-buttons|tr -d "|")
 	if [[ $DATA ]]; then
 		echo -e "$DATA" > ~/.emacs.d/.org-popup
-		emacsclient "org-protocol://capture?template=$1"
+		emacsclient "org-protocol://+org-capture?template=$1"
 	fi
 fi
