@@ -24,8 +24,8 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Operator Mono" :size 12))
 ;; JetBrains Mono
-(setq doom-font (font-spec :family "Iosevka" :size 14 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Fantasque Sans Mono" :size 16))
+(setq doom-font (font-spec :family "Iosevka" :size 16 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Fantasque Sans Mono" :size 14))
 
 (set-fontset-font t 'bengali (font-spec :family "Hind Siliguri" :size 13))
 
@@ -46,6 +46,7 @@
 ;; `load-theme' function. This is the default:
 
 (setq doom-theme 'doom-one)
+;;(setq doom-theme 'github-modern)
 
 (smooth-scrolling-mode 1)
 (display-battery-mode 't)

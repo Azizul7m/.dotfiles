@@ -26,6 +26,7 @@
 ;; (package! company-tabnine)
 
 
+(package! github-modern-theme)
 ;;dotnet
 ;; (package! omnisharp)
 ;; (package! csproj-mode)
