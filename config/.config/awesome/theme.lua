@@ -11,7 +11,7 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Iosevka  8"
+theme.font          = "UbuntuMono  8"
 
 theme.bg_normal     = "#3D4348"
 theme.bg_focus      = "#081F2F"
@@ -37,8 +37,8 @@ theme.taglist_fg_focus    = "#FFFFFF"
 theme.taglist_fg_occupied = "#DDDDDD"
 theme.taglist_fg_urgent   = "#ED7572"
 theme.taglist_fg_empty    = "#bbbbbb"
-theme.taglist_spacing     = 4
-theme.taglist_font        = "awesomewm 8"
+theme.taglist_spacing     = 3
+theme.taglist_font        = "awesomewm 9"
 
 
 -- There are other variable sets

@@ -402,30 +402,23 @@ globalkeys = gears.table.join(
 
     awful.key({modkey},   "v",     function ()
     awful.spawn.with_shell("roficlip")  end,
-            {description = "Clipboard", group = "launcher"}),
-
-    awful.key({modkey},   "d",     function ()
-    awful.spawn.with_shell("rofi-zeal.sh")  end,
-            {description = "Documentation for your programing language js, ts, sh, rs ...etc", group = "launcher"}),
+            {description = "Power Menue (Rofi)", group = "launcher"}),
 
     awful.key({modkey, "Shift" },   ".",     function ()
     awful.spawn.with_shell("emoji-picker")  end,
-            {description = "Emoji Picker", group = "launcher"}),
+            {description = "Power Menue (Rofi)", group = "launcher"}),
 
     awful.key({modkey, "Mod1" },   "i",     function ()
-    awful.spawn.with_shell("emacsclient --eval '(+org-capture/open-frame)'")  end,
-            {description = "Road Note Take", group = "launcher"}),
+    awful.spawn.with_shell("org-popup.sh t")  end,
+            {description = "Power Menue (Rofi)", group = "launcher"}),
 
-    awful.key({modkey, "Control" },   "i",     function ()
-            awful.spawn.with_shell("emacsclient --eval '(emacs-everywhere)'" )  end,
-            {description = "Road Note Take", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "f",     function () 
     awful.spawn.with_shell('~/.config/awesome/dws.sh')  end,
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('nemo')  end,
+    awful.util.spawn('nautilus')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "e",     function () 

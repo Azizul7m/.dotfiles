@@ -11,8 +11,8 @@ set EDITOR "vim"                 # $EDITOR use Emacs in terminal
 set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
 
 # pnpm
-set PNPM_HOME "/home/anower/.local/pnpm"
-# export PATH "$PNPM_HOME:$PATH"
+set -gx PNPM_HOME "/home/anower/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
 
 

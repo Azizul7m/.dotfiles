@@ -1,3 +1,5 @@
+;;;
+;;;
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -24,16 +26,22 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Operator Mono" :size 12))
 ;; JetBrains Mono
-(setq doom-font (font-spec :family "Iosevka" :size 16 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Fantasque Sans Mono" :size 14))
+(setq doom-font (font-spec :family "Iosevka" :size 14 :weight 'regular)
+      )
 
 (set-fontset-font t 'bengali (font-spec :family "Hind Siliguri" :size 13))
 
-(setq doom-modeline-height 10) ; optional
+;; (setq doom-modeline-height 10) ; optional
 (custom-set-faces
-  '(mode-line ((t (:family "Fantasque Sans Mono" :height 95))))
-  '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 95)))) ; For 29+
-  '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 95)))))
+  '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
+  '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
+  '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 92))))
+  )
+
+;; (add-hook 'prog-mode-hook (lambda ()
+;;                             (setq buffer-face-mode-face '(:family "Iosevka " :height 108))
+;;                             (buffer-face-mode)))
+
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -53,15 +61,22 @@
 (display-time-mode 't)
 (setq doom-themes-treemacs-theme "doom-colors")
 
-;; Dashboard
-;; (setq dashboard-set-heading-icons nil)
-;; (add-to-list 'dashboard-items '(agenda) t)
-;; (setq dashboard-week-agenda t)
-
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+  (setq dashboard-startup-banner "~/.doom.d/emacs.png")
+  (setq dashboard-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-set-init-info t)
+  (setq dashboard-center-content t))
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-
 (setq display-line-numbers-type 'relative)
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -111,25 +126,19 @@
 ;;     (setq x y))
 
 
-(use-package company
-  :config
-  (global-company-mode)
-  (setq company-idle-delay 0)
-  ;; (setq company-tooltip-limit 10)
-  ;; (setq company-transformers '(company-sort-by-occurrence))
-  ;; (add-to-list 'company-backends 'company-dabbrev t)
-  (setq company-minimum-prefix-length 1))
-
 (after! company
-  (setq +lsp-company-backends '( company-yasnippet :separate company-capf  :separate company-dabbrev :separate company-wordfreq))
+  (setq company-idle-delay 0)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-minimum-prefix-length 1)
   (setq company-show-quick-access t)
+  (setq +lsp-company-backends '( company-yasnippet :separate company-capf  :separate company-dabbrev :separate company-files :separate company-wordfreq))
 )
 
 (use-package all-the-icons-ivy-rich
   :ensure t
   :init (all-the-icons-ivy-rich-mode 1))
 
-(use-package ivy-rich
+(after! ivy-rich
   :ensure t
   :init (ivy-rich-mode 1))
 
@@ -138,10 +147,14 @@
   :bind("M-y" . popup-kill-ring))
 
 
-(use-package yasnippet
+(after! yasnippet
   :config
   (setq yas-snippet-dirs '("~/.org/snippets"))
   (yas-global-mode 1))
+
+
+(use-package! lsp-tailwindcss)
+
 
 ;; Offile Documentation
 (require 'counsel-dash)
@@ -171,37 +184,32 @@
 (global-set-key (kbd "C-c W") 'define-it)
 
 ;;IRC irc
-;; (erc :server "irc.libera.chat" :port "6697" :nick "ANOWER" :password "@/947M")
-;; (setq erc-autojoin-channels-alist
-;;           '(("irc.libera.chat" "#emacs" "#nethack")))
-;;     (erc :server "irc.libera.chat" :port 6667 :nick "ANOWER" :password "@\3121")
+;; (erc :server "irc.libera.chat" :port 6667 :nick "anower" :password "/@97M")
+;; (setq
+;;  erc-autojoin-delay 30
+;;  erc-auto-query 'bury-buffer
+;;  erc-fill-column 100
+;;  erc-fill-function 'erc-fill-static
+;;  erc-fill-static-center 25
+;;  erc-autojoin-channels-alist '(("irc.libera.chat" "#javascript" "#linux" "#emacs") ("irc.oftc.net" "#wayland" "kali-linux")))
+
+(setq circe-network-options
+      '(("Libera Chat"
+         :tls t
+         :nick "anower"
+         :sasl-username "anower"
+         :sasl-password "/@97M"
+         :channels ("#emacs" "#emacs-circe" "#javascript"))))
+;; (setq enable-circe-color-nicks t)
+(setq circe-color-nicks 't)
+;; (setq circe-color-nicks-everywhere t)
+
+;; For non ascii-characters in folder-names
+(setq elmo-imap4-use-modified-utf7 t)
 
 ;; (use-package lsp-mode
 ;;   :custom
 ;;   (lsp-headerline-breadcrumb-enable t))
-
-;;web mode
-(setq web-mode-enable-current-element-highlight 1)
-
-;; bangla
-(defun remove-quail-show-guidance ()
-  nil)
-(defun remove-quail-completion ()
-  (quail-select-current))
-(defun bn-company-wordfreq ()
-  (interactive)
-  (advice-add 'quail-show-guidance :override #'remove-quail-show-guidance)
-  (advice-add 'quail-completion :override #'remove-quail-completion)
-  (setq ispell-local-dictionary "bengali")
-  (setq-local company-backends '(company-wordfreq))
-  (setq-local company-transformers nil))
-
-;; Note from browser
-(setq org-capture-templates
-      '(("t" "todo" entry (file+headline "~/.org/web/web.org" "Tasks")
-         "%[org-popup]" :immediate-finish t :prepend t)
-        ("j" "Journal" entry (file+datetree "~/.org/web/journal.org" "Titled Notes")
-         "%[org-popup]" :immediate-finish t :prepend t)))
 
 
 
@@ -244,10 +252,32 @@
 
 ;; elfeed
 (setq elfeed-goodies/entry-pane-size 0.5)
-(setq elfeed-feeds (quote
-                    (("https://css-tricks.com/feed/" Css Tricks)
-                     ("http://nullprogram.com/feed/" blog emacs))))
-
+(global-set-key (kbd "C-x w") 'elfeed)
+(setq elfeed-feeds
+        '("https://web.dev/feed.xml"
+        "https://blog.logrocket.com/feed/"
+        "https://planet.emacslife.com/atom.xml"
+        "https://www.brsoftech.com/blog/feed/"
+        "https://www.smashingmagazine.com/feed"
+        "https://www.sitepoint.com/feed/"
+        "https://tympanus.net/codrops/feed/"
+        "https://feeds.dzone.com/webdev"
+        "https://css-tricks.com/feed/"
+        "https://blog.codepen.io/feed/"
+        "https://webkul.com/blog/feed/"
+        "https://feeds.feedburner.com/ProgrammableWeb"
+        "https://cssauthor.com/feed/"
+        "https://codeconvey.com/feed/"
+        "https://www.inexture.com/feed/"
+        "http://javascriptweekly.com/rss"
+        "https://www.echojs.com/rss"
+        "https://www.uplogictech.com/blog/feed/"
+        "https://wdrl.info/feed"
+        "https://developerstroop.com/feed/"
+        "https://reactjs.org/feed.xml"
+        "http://davidwalsh.name/feed"
+        "http://dailynerd.nl/feed/"
+        "http://rss1.smashingmagazine.com/feed/"))
 ;; The exceptions to this rule:
 ;;
 ;;   - Setting file/directory variables (like `org-directory')
@@ -309,3 +339,16 @@
         ("START"      error bold)
         ("END"        error bold)
         ("DEPRECATED" font-lock-doc-face bold))))
+
+;; bangla
+(defun remove-quail-show-guidance ()
+  nil)
+(defun remove-quail-completion ()
+  (quail-select-current))
+(defun bn-company-wordfreq ()
+  (interactive)
+  (advice-add 'quail-show-guidance :override #'remove-quail-show-guidance)
+  (advice-add 'quail-completion :override #'remove-quail-completion)
+  (setq ispell-local-dictionary "bengali")
+  (setq-local company-backends '(company-wordfreq))
+  (setq-local company-transformers nil))
