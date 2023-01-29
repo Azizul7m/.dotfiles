@@ -26,6 +26,7 @@ run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-ke
 #run 'gnome-pie'
 # run 'picom -b --experimental-backends --config ~/.config/picom.conf'
 run 'ibus-daemon --xim --replace --daemonize --panel=/usr/lib/ibus/ibus-ui-gtk3'
+run 'emacs --bg-daemon'
 run 'picom '
 run 'clipster -d'
 # run 'diodon' #clipboard

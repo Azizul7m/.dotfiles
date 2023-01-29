@@ -9,10 +9,10 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
+
 (package! smooth-scrolling)
 (package! evil-mc)
 (package! mermaid-mode)
-(package! ob-mermaid)
 (package! org-noter)
 (package! org-roam-ui)
 (package! company-wordfreq)
@@ -27,6 +27,10 @@
 (package! circe) ;;irc client
 ;; (package! company-tabnine)
 
+;;Ob
+
+(package!  ob-typescript)
+(package! ob-mermaid)
 
 (package! github-modern-theme)
 ;;dotnet
@@ -41,6 +45,9 @@
 
 ;;Lsp
 (package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
+
+;; Debug
+(package! dap-mode)
 
 
 ;; To install a package directly from a remote git repo, you must specify a

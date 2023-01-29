@@ -24,19 +24,15 @@ nix-env -iA \
   nixpkgs.neovim \
   nixpkgs.yarn \
   nixpkgs.nodejs \
-  
 
-stow bash
-stow fish
-stow zsh
-stow tmux
-stow starship
+stow dots
+stow config
+stow local
 stow emacs
-stow baseDotFile
 
 # add zsh and fish to valid login shells 
 command -v fish | sudo tee -a /etc/shells
-command -v zsh | sudo tee -a /etc/shells
+#command -v zsh | sudo tee -a /etc/shells
 
 # use zsh as a default shells
 sudo chsh -s $(which fish) $USER

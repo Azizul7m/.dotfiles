@@ -408,9 +408,9 @@ globalkeys = gears.table.join(
     awful.spawn.with_shell("emoji-picker")  end,
             {description = "Power Menue (Rofi)", group = "launcher"}),
 
-    awful.key({modkey, "Mod1" },   "i",     function ()
-    awful.spawn.with_shell("org-popup.sh t")  end,
-            {description = "Power Menue (Rofi)", group = "launcher"}),
+    awful.key({modkey, "Control" },   "i",     function ()
+    awful.spawn.with_shell("emacsclient --eval '(emacs-everywhere)'")  end,
+            {description = "Emacs Everywhere", group = "launcher"}),
 
 
     awful.key({ modkey, "Shift" },            "f",     function () 
@@ -418,7 +418,7 @@ globalkeys = gears.table.join(
             {description = "Active Windows", group = "launcher"}),
 
     awful.key({ modkey },            "e",     function () 
-    awful.util.spawn('nautilus')  end,
+    awful.util.spawn('pcmanfm')  end,
             {description = "File Manager", group = "launcher"}),
 
     awful.key({ modkey, "Shift" },            "e",     function () 

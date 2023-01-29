@@ -72,7 +72,7 @@
   (setq dashboard-set-file-icons t)
   (setq dashboard-set-navigator t)
   (setq dashboard-set-init-info t)
-  (setq dashboard-center-content t))
+  (setq dashboard-center-content nil))
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -153,7 +153,21 @@
   (yas-global-mode 1))
 
 
-(use-package! lsp-tailwindcss)
+(use-package lsp-tailwindcss)
+;; debug
+(setq dap-auto-configure-features '(sessions locals controls tooltip))
+(require 'dap-firefox)
+
+;; (setq lsp-ui-doc-show-with-mouse 't)
+;; (setq lsp-ui-doc-show-with-cursor 't)
+
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
+
+
+;; Latex
+(setq +latex-viewers 'nil)
 
 
 ;; Offile Documentation
@@ -183,16 +197,6 @@
 (global-set-key (kbd "C-c s") 'define-it-at-point)
 (global-set-key (kbd "C-c W") 'define-it)
 
-;;IRC irc
-;; (erc :server "irc.libera.chat" :port 6667 :nick "anower" :password "/@97M")
-;; (setq
-;;  erc-autojoin-delay 30
-;;  erc-auto-query 'bury-buffer
-;;  erc-fill-column 100
-;;  erc-fill-function 'erc-fill-static
-;;  erc-fill-static-center 25
-;;  erc-autojoin-channels-alist '(("irc.libera.chat" "#javascript" "#linux" "#emacs") ("irc.oftc.net" "#wayland" "kali-linux")))
-
 (setq circe-network-options
       '(("Libera Chat"
          :tls t
@@ -207,39 +211,6 @@
 ;; For non ascii-characters in folder-names
 (setq elmo-imap4-use-modified-utf7 t)
 
-;; (use-package lsp-mode
-;;   :custom
-;;   (lsp-headerline-breadcrumb-enable t))
-
-
-
-;; dotnet
-
-;; (eval-after-load
-;;   'company
-;;   '(add-to-list 'company-backends #'company-omnisharp #'company-files #'company-dabbrev-code ))
-
-;; (defun my-csharp-mode-setup ()
-;;   (omnisharp-mode)
-;;   (company-mode)
-;;   (flycheck-mode)
-
-;;   (setq indent-tabs-mode nil)
-;;   (setq c-syntactic-indentation t)
-;;   (c-set-style "ellemtel")
-;;   (setq c-basic-offset 4)
-;;   (setq truncate-lines t)
-;;   (setq tab-width 4)
-;;   (setq evil-shift-width 4)
-
-
-;;   (electric-pair-local-mode 1)
-;;   (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
-;;   (local-set-key (kbd "C-c C-c") 'recompile))
-
-  ;csharp-mode README.md recommends this too
-  ;(electric-pair-mode 1)       ;; Emacs 24
-  ;(electric-pair-local-mode 1) ;; Emacs 25
 
 
 ;; ;; Diagram flowchart mermaid
