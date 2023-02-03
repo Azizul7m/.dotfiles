@@ -31,7 +31,7 @@
 
 (set-fontset-font t 'bengali (font-spec :family "Hind Siliguri" :size 13))
 
-;; (setq doom-modeline-height 10) ; optional
+(setq doom-modeline-height 10) ; optional
 (custom-set-faces
   '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
   '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
