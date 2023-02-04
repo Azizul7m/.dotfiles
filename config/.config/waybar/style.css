@@ -127,7 +127,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mpd {
-    /* padding: 0 10px; */
+    padding: 0 2px;
     color: @fgcolor;
     background: transparent;
 }
@@ -157,7 +157,6 @@ button:hover {
 
 #battery.charging, #battery.plugged {
     /* color: #26A65B; */
-    background-color: transparent;
 }
 
 @keyframes blink {
@@ -228,7 +227,7 @@ label:focus {
 #custom-media {
     /* background-color: #66cc99; */
     /* color: #2a5c45; */
-    min-width: 100px;
+    /* min-width: 100px; */
 }
 
 #custom-media.custom-spotify {
@@ -289,17 +288,17 @@ label:focus {
 #language {
     /* background: #00b093; */
     /* color: #740864; */
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
+    /* padding: 0 5px; */
+    /* margin: 0 5px; */
+    /* min-width: 16px; */
 }
 
 #keyboard-state {
     /* background: #97e1ad; */
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
+    /* color: #000000; */
+    /* padding: 0 0px; */
+    /* margin: 0 5px; */
+    /* min-width: 16px; */
 }
 
 #keyboard-state > label {
@@ -315,5 +314,5 @@ label:focus {
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+	/* background-color: transparent; */
 }

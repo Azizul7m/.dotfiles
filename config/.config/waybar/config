@@ -5,21 +5,18 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["custom/wmname", "wlr/workspaces","custom/spotify"],
-    "modules-center": ["clock"],
+    "modules-left": ["custom/wmname", "wlr/workspaces"],
+    "modules-center": ["clock", "custom/media"],
     "modules-right": [
-        "mpd",
-        "idle_inhibitor",
-        "pulseaudio",
         "network",
+        "pulseaudio",
+        "temperature",
         "cpu",
         "memory",
-        "temperature",
         "backlight",
-        "keyboard-state",
-        "sway/language",
         "battery",
         "battery#bat2",
+        "sway/language",
         "tray"
     ],
     "sway/workspaces": {
@@ -108,11 +105,12 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d %I:%M %p}",
+        "format": "{:%I:%M %p}"
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": true
     },
     "memory": {
         "format": "{}% "
@@ -136,8 +134,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format": "{icon}",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
