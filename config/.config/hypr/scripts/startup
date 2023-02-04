@@ -27,7 +27,7 @@ run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-ke
 # run nitrogen,
 #run 'gnome-pie'
 # run 'picom -b --experimental-backends --config ~/.config/picom.conf'
-run 'clipster -d'
+# run 'clipster -d'
 # run 'pidgin'
 # run 'telegram-desktop'
 # run 'qbittorrent'

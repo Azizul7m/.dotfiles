@@ -7,24 +7,21 @@
     // Choose the order of the modules
     "modules-left": ["custom/wmname", "wlr/workspaces","custom/spotify"],
     "modules-center": ["clock"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    //
+    "modules-right": [
+        "mpd",
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "keyboard-state",
+        "sway/language",
+        "battery",
+        "battery#bat2",
+        "tray"
+    ],
     "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -106,7 +103,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 10
+        "spacing": 5 
     },
     "clock": {
         // "timezone": "America/New_York",
