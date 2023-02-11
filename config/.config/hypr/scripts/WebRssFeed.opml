@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Subscriptions</title>
+  </head>
+  <body>
+
+            <outline
+                title="web.dev"
+                text="Let's build the future of the web."
+                type="rss"
+                xmlUrl="https://web.dev/feed.xml"
+                htmlUrl="https://web.dev"
+                category=""
+            />
+        
+            <outline
+                title="LogRocket Blog"
+                text="For Frontend Developers and Web App Engineers"
+                type="rss"
+                xmlUrl="https://blog.logrocket.com/feed/"
+                htmlUrl="https://blog.logrocket.com/"
+                category=""
+            />
+        
+            <outline
+                title="BR Softech"
+                text="Technology Simplyfied"
+                type="rss"
+                xmlUrl="https://www.brsoftech.com/blog/feed/"
+                htmlUrl="https://www.brsoftech.com/blog"
+                category=""
+            />
+        
+            <outline
+                title="Articles on Smashing Magazine ‚Äî For Web Designers And Developers"
+                text="Recent content in Articles on Smashing Magazine ‚Äî For Web Designers And Developers"
+                type="rss"
+                xmlUrl="https://www.smashingmagazine.com/feed"
+                htmlUrl="https://www.smashingmagazine.com/"
+                category=""
+            />
+        
+            <outline
+                title="SitePoint"
+                text="Learn CSS | HTML5 | JavaScript | Wordpress | Tutorials-Web Development | Reference | Books and More"
+                type="rss"
+                xmlUrl="https://www.sitepoint.com/feed/"
+                htmlUrl="https://www.sitepoint.com"
+                category=""
+            />
+        
+            <outline
+                title="Codrops"
+                text="Creative front-end resources and inspiration for web professionals"
+                type="rss"
+                xmlUrl="https://tympanus.net/codrops/feed/"
+                htmlUrl="https://tympanus.net/codrops"
+                category=""
+            />
+        
+            <outline
+                title="DZone Web Dev Zone"
+                text="Recent posts in Web Dev on DZone.com"
+                type="rss"
+                xmlUrl="https://feeds.dzone.com/webdev"
+                htmlUrl="https://dzone.com/web-development-programming-tutorials-tools-news"
+                category=""
+            />
+        
+            <outline
+                title="CSS-Tricks"
+                text="Tips, Tricks, and Techniques on using Cascading Style Sheets."
+                type="rss"
+                xmlUrl="https://css-tricks.com/feed/"
+                htmlUrl="https://css-tricks.com"
+                category=""
+            />
+        
+            <outline
+                title="CodePen Blog"
+                text="The CodePen team talk about the ins and outs of running a web software business."
+                type="rss"
+                xmlUrl="https://blog.codepen.io/feed/"
+                htmlUrl="https://blog.codepen.io/"
+                category=""
+            />
+        
+            <outline
+                title="Webkul Blog"
+                text=""
+                type="rss"
+                xmlUrl="https://webkul.com/blog/feed/"
+                htmlUrl="https://webkul.com/blog/"
+                category=""
+            />
+        
+            <outline
+                title="ProgrammableWeb.com - Feed"
+                text="The leading source of news and information around APIs, Mashups, Apps and the Web as a Platform, chronicling the evolution of the global API economy and providing the web’s most relied-on API Directory."
+                type="rss"
+                xmlUrl="https://feeds.feedburner.com/ProgrammableWeb"
+                htmlUrl="https://www.programmableweb.com/"
+                category=""
+            />
+        
+            <outline
+                title="CSS Author"
+                text="Website Design &amp; Development, Graphic Design, UI/UX Design"
+                type="rss"
+                xmlUrl="https://cssauthor.com/feed/"
+                htmlUrl="https://cssauthor.com"
+                category=""
+            />
+        
+            <outline
+                title="Codeconvey"
+                text="300+ HTML / CSS Examples with Source Code &amp; Tutorial"
+                type="rss"
+                xmlUrl="https://codeconvey.com/feed/"
+                htmlUrl="https://codeconvey.com/"
+                category=""
+            />
+        
+            <outline
+                title="Inexture Solutions"
+                text="Idea. Delivered."
+                type="rss"
+                xmlUrl="https://www.inexture.com/feed/"
+                htmlUrl="https://www.inexture.com"
+                category=""
+            />
+        
+            <outline
+                title="JavaScript Weekly"
+                text="A newsletter of JavaScript articles, news and cool projects"
+                type="rss"
+                xmlUrl="http://javascriptweekly.com/rss"
+                htmlUrl="https://javascriptweekly.com/"
+                category=""
+            />
+        
+            <outline
+                title="Echo JS"
+                text="Description pending"
+                type="rss"
+                xmlUrl="https://www.echojs.com/rss"
+                htmlUrl="http://www.echojs.com"
+                category=""
+            />
+        
+            <outline
+                title="Uplogic Technologies"
+                text="Latest Updates on On-Demand Industry,  Tips, Trends and Growth Stats"
+                type="rss"
+                xmlUrl="https://www.uplogictech.com/blog/feed/"
+                htmlUrl="https://www.uplogictech.com/blog"
+                category=""
+            />
+        
+            <outline
+                title="Latest WDRL editions via Feed"
+                text="Read the latest WDRL newsletter editions in your feedreader."
+                type="rss"
+                xmlUrl="https://wdrl.info/feed"
+                htmlUrl="https://wdrl.info/archive"
+                category=""
+            />
+        
+            <outline
+                title="DevelopersTroop"
+                text="Website, Apps &amp; Software Development Company"
+                type="rss"
+                xmlUrl="https://developerstroop.com/feed/"
+                htmlUrl="https://developerstroop.com"
+                category=""
+            />
+        
+            <outline
+                title="React"
+                text="A JavaScript library for building user interfaces"
+                type="rss"
+                xmlUrl="https://reactjs.org/feed.xml"
+                htmlUrl="https://reactjs.org"
+                category=""
+            />
+        
+            <outline
+                title="David Walsh Blog"
+                text="A blog featuring tutorials about JavaScript, HTML5, AJAX, PHP, CSS, WordPress, and everything else development."
+                type="rss"
+                xmlUrl="http://davidwalsh.name/feed"
+                htmlUrl="https://davidwalsh.name"
+                category=""
+            />
+        
+            <outline
+                title="Klungel"
+                text="Voor de Onhandige man - Klussen, Vrouwen, Auto's, Sport en meer"
+                type="rss"
+                xmlUrl="http://dailynerd.nl/feed/"
+                htmlUrl="https://klungel.nl/"
+                category=""
+            />
+        
+            <outline
+                title="Articles on Smashing Magazine ‚Äî For Web Designers And Developers"
+                text="Recent content in Articles on Smashing Magazine ‚Äî For Web Designers And Developers"
+                type="rss"
+                xmlUrl="http://rss1.smashingmagazine.com/feed/"
+                htmlUrl="https://www.smashingmagazine.com/"
+                category=""
+            />
+        
+  </body>
+</opml>

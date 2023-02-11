@@ -21,7 +21,7 @@ COLOR=( --tf "#83bae8" --tb "#3a3a3a" --nf "#b0b4bc" --nb "#3a3a3a" --af "#b0b4b
 
 # If "BROWSER" unset globally, set locally.
 [ -n "$BROWSER" ] || BROWSER="firefox -new-window"
-[ -n "$TERMINAL" ] || TERMINAL="kitty"
+[ -n "$TERMINAL" ] || TERMINAL="alacritty"
 
 case $1 in
 
@@ -84,7 +84,7 @@ case $1 in
 # Open terminal in a git repo.
 -r)
   mkdir -p $HOME/.tmp
-  [ -e $HOME/.tmp/gitfiles ] || find $HOME/ -regex .*/\.git$ -type d 2>/dev/null >$HOME/.tmp/gitfiles
+  [ -e $HOME/.tmp/gitfiles ] || find $HOME/Dev/ -regex .*/\.git$ -type d 2>/dev/null >$HOME/.tmp/gitfiles
   REPOS="$(cat $HOME/.tmp/gitfiles | xargs dirname | sed s:/home/$USER:~: | bemenu "${COLOR[@]}" -i -l 20 -p 'Select git repo to open' --fn "$DMENU_FONT1")"
 
   # Cut the '~/' part from the `REPOS'.

@@ -2,7 +2,7 @@
 
 
 set -e fish_user_paths
-set -U fish_user_paths ~/bin ~/.config/rofi/bin ~/.local/npm/bin ~/.dotnet/tool ~/.nix-profile/bin  $HOME/.config/rofi/applets/styles  ~/.local/bin ~/.local/share/solana/install/active_release/bin  $HOME/Applications  ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
+set -U fish_user_paths ~/bin ~/.config/rofi/bin ~/.config/hypr/scripts ~/.local/npm/bin ~/.dotnet/tool ~/.nix-profile/bin  $HOME/.config/rofi/applets/styles  ~/.local/bin ~/.local/share/solana/install/active_release/bin  $HOME/Applications  ~/.config/composer/vendor/bin $HOME/.cargo/bin $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message

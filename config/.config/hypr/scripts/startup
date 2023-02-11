@@ -19,7 +19,8 @@ function run {
 run 'nm-applet'
 #run 'pnmixer'
 run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)'
-#run 'xfce4-power-manager'
+run 'emacs --bg-daemon'
+run 'ibus-daemon --xim --replace --daemonize --panel=/usr/lib/ibus/ibus-ui-gtk3'
 #run 'flameshot',
 #run 'synology-drive -minimized',
 #run 'steam -silent',
@@ -40,4 +41,4 @@ run '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-ke
 #run spotify
 #run ckb-next -b
 #run discord
-exec waybar -s ~/.config/hypr/waybar/style.css  -c ~/.config/hypr/waybar/config &
+# exec waybar -s ~/.config/hypr/waybar/style.css  -c ~/.config/hypr/waybar/config &

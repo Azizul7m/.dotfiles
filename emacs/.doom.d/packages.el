@@ -32,7 +32,6 @@
 (package!  ob-typescript)
 (package! ob-mermaid)
 
-(package! github-modern-theme)
 ;;dotnet
 ;; (package! omnisharp)
 ;; (package! csproj-mode)
@@ -44,7 +43,6 @@
 (package! ob-rust)
 
 ;;Lsp
-(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 
 ;; Debug
 (package! dap-mode)

@@ -23,20 +23,20 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 
-;;(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Operator Mono" :size 12))
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 12 :weight 'Regular)
+     doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 12))
+
 ;; JetBrains Mono
-(setq doom-font (font-spec :family "Iosevka" :size 14 :weight 'regular)
-      )
+;; (setq doom-font (font-spec :family "Iosevka" :size 14 :weight 'regular))
 
 (set-fontset-font t 'bengali (font-spec :family "Hind Siliguri" :size 13))
 
 (setq doom-modeline-height 10) ; optional
-(custom-set-faces
-  '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
-  '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
-  '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 92))))
-  )
+;; (custom-set-faces
+;;   '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
+;;   '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
+;;   '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 92))))
+;;   )
 
 ;; (add-hook 'prog-mode-hook (lambda ()
 ;;                             (setq buffer-face-mode-face '(:family "Iosevka " :height 108))
@@ -124,14 +124,16 @@
 ;;
 ;;   (after! PACKAGE
 ;;     (setq x y))
-
+(setq gc-cons-threshold (* 1024 1024 100))
 
 (after! company
   (setq company-idle-delay 0)
   (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-minimum-prefix-length 1)
+  (setq company-minimum-prefix-length 0)
   (setq company-show-quick-access t)
-  (setq +lsp-company-backends '( company-yasnippet :separate company-capf  :separate company-dabbrev :separate company-files :separate company-wordfreq))
+  (setq company-tooltip-align-annotations t)
+  (setq +lsp-company-backends '(  company-capf  :separate company-yasnippet :separate company-files  :separate company-dabbrev :separate company-wordfreq))
+  (global-company-mode 1)
 )
 
 (use-package all-the-icons-ivy-rich
@@ -152,23 +154,37 @@
   (setq yas-snippet-dirs '("~/.org/snippets"))
   (yas-global-mode 1))
 
+;;lsp
+(setq lsp-enable-file-watchers nil)
 
-(use-package lsp-tailwindcss)
-;; debug
-(setq dap-auto-configure-features '(sessions locals controls tooltip))
-(require 'dap-firefox)
+;; Use the eglot LSP client
+;; (use-package! eglot
+;;   :after lsp-mode
+;;   :config
+;;   (setq eglot-autoreconnect nil))
 
-;; (setq lsp-ui-doc-show-with-mouse 't)
-;; (setq lsp-ui-doc-show-with-cursor 't)
-
-(use-package lsp-tailwindcss
-  :init
-  (setq lsp-tailwindcss-add-on-mode t))
+;; eglot
+(after! eglot
+  (setq eglot-autoreconnect nil)
+  (setq eglot-server-programs
+        '((html-mode . ("html-languageserver"))
+          (css-mode . ("css-languageserver"))
+          (js-mode . ("typescript-language-server" "--stdio"))
+          (js2-mode . ("typescript-language-server" "--stdio"))
+          (typescript-mode . ("typescript-language-server" "--stdio"))
+          (rjsx-mode . ("typescript-language-server" "--stdio"))
+          (typescript-tsx-mode . ("typescript-language-server" "--stdio"))
+          (jsx-mode . ("typescript-language-server" "--stdio"))
+          (rust-mode . ("rust-analyzer"))
+          (css-mode . ("postcss-languageserver"))
+          (html-mode . ("vscode-html-languageserver-bin")))))
 
 
 ;; Latex
 (setq +latex-viewers 'nil)
 
+;;savehist-mode
+(setq savehist-mode nil)
 
 ;; Offile Documentation
 (require 'counsel-dash)

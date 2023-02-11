@@ -87,7 +87,7 @@ highlight LineNr ctermbg=Black ctermfg=White
 
 
 
-colorscheme nord
+colorscheme onedark
 
 "Random staff
 "----------------------------------------------------------------
