@@ -23,7 +23,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 14 :weight 'Regular)
      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 12))
 
 ;; JetBrains Mono
@@ -31,12 +31,12 @@
 
 (set-fontset-font t 'bengali (font-spec :family "Hind Siliguri" :size 13))
 
-(setq doom-modeline-height 10) ; optional
-;; (custom-set-faces
-;;   '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
-;;   '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
-;;   '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 92))))
-;;   )
+(setq doom-modeline-height 8) ; optional
+(custom-set-faces
+        '(mode-line ((t (:family "Fantasque Sans Mono" :height 92))))
+  ;; '(mode-line-active ((t (:family "Fantasque Sans Mono" :height 92)))) ; For 29+
+        '(mode-line-inactive ((t (:family "Fantasque Sans Mono" :height 92))))
+)
 
 ;; (add-hook 'prog-mode-hook (lambda ()
 ;;                             (setq buffer-face-mode-face '(:family "Iosevka " :height 108))
@@ -61,10 +61,9 @@
 (display-time-mode 't)
 (setq doom-themes-treemacs-theme "doom-colors")
 
-(require 'dashboard)
+;; (require 'dashboard)
 (dashboard-setup-startup-hook)
 (use-package dashboard
-  :ensure t
   :config
   (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
   (setq dashboard-startup-banner "~/.doom.d/emacs.png")
@@ -73,7 +72,7 @@
   (setq dashboard-set-navigator t)
   (setq dashboard-set-init-info t)
   (setq dashboard-center-content nil))
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;; (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -127,7 +126,7 @@
 (setq gc-cons-threshold (* 1024 1024 100))
 
 (after! company
-  (setq company-idle-delay 0)
+  (setq company-idle-delay 0.28)
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-minimum-prefix-length 0)
   (setq company-show-quick-access t)
@@ -137,7 +136,6 @@
 )
 
 (use-package all-the-icons-ivy-rich
-  :ensure t
   :init (all-the-icons-ivy-rich-mode 1))
 
 (after! ivy-rich
@@ -145,7 +143,6 @@
   :init (ivy-rich-mode 1))
 
 (use-package popup-kill-ring
-  :ensure t
   :bind("M-y" . popup-kill-ring))
 
 
@@ -184,7 +181,6 @@
 (setq +latex-viewers 'nil)
 
 ;;savehist-mode
-(setq savehist-mode nil)
 
 ;; Offile Documentation
 (require 'counsel-dash)
@@ -312,9 +308,7 @@
 ;; TODO: heighlight config
 (use-package hl-todo
 :hook ((prog-mode . hl-todo-mode)
-        (org-mode . hl-todo-mode)
-        (web-mode . hl-todo-mode)
-        (rjsx-mode . hl-todo-mode))
+        (org-mode . hl-todo-mode))
 :config
 (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces

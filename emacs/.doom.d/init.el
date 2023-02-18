@@ -74,7 +74,7 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell            ; the elisp shell that works everywhere
+       ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
@@ -120,8 +120,8 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       ;;(csharp  +lsp)      ; unity, .NET, and mono shenanigans
-      ; docker        ; docker shenanigans
+       ;;(csharp  +lsp)    ; unity, .NET, and mono shenanigans
+      ;;docker               ; docker shenanigans
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
