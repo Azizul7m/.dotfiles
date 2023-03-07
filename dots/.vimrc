@@ -8,7 +8,6 @@ Plug 'ap/vim-css-color'
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'frazrepo/vim-rainbow'
-Plug 'arcticicestudio/nord-vim'
 "Utils
 Plug 'thaerkh/vim-indentguides'
 Plug 'junegunn/vim-easy-align'
@@ -56,8 +55,10 @@ set expandtab smarttab
 set formatoptions=tcqrn1
 "set emo
 set wildmode=longest,list,full
-set completeopt=longest,noinsert,menu,menuone,preview
-set completefunc=popup_menu_complete
+set completeopt=longest,noinsert,menu,menuone,preview "completation behaviors
+set completefunc=popup_menu_complete "For vertical complete
+set omnifunc=syntaxcomplete#Complete "completation engine
+set complete=.,w,b,u,t,i "option for completation .->current buffer w-> word b-> buffer 
 "Utils
 set dictionary+=/usr/share/dict/words
 set complete+=k/usr/share/dict/words
@@ -105,9 +106,14 @@ nmap <leader>f :FZF<CR>
 
 
 " autocmd command
-autocmd CmdWinEnter colorscheme set completeopt=menu,menuone,preview
-
-
+function! PopupCompletion()
+  if pumvisible()
+    return "\<C-n>"
+  else
+    return "\<C-x>\<C-u>"
+  endif
+endfunction
+inoremap <expr> <TAB> PopupCompletion()
 
 
  "vim-prettier
