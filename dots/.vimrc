@@ -13,7 +13,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'thaerkh/vim-indentguides'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'liuchengxu/vim-which-key'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 "git
@@ -57,7 +56,8 @@ set expandtab smarttab
 set formatoptions=tcqrn1
 "set emo
 set wildmode=longest,list,full
-set completeopt+=menuone,longest
+set completeopt=longest,noinsert,menu,menuone,preview
+set completefunc=popup_menu_complete
 "Utils
 set dictionary+=/usr/share/dict/words
 set complete+=k/usr/share/dict/words
@@ -86,16 +86,12 @@ highlight LineNr ctermbg=Black ctermfg=White
 
 
 
-
-colorscheme onedark
+colorscheme slate
 
 "Random staff
 "----------------------------------------------------------------
 let g:mucomplete#enable_auto_at_startup = 1
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 let g:mapleader = "\<Space>"
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 let g:fzf_preview_window = ['right:45%', 'ctrl-/']
 
@@ -105,12 +101,16 @@ let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 " Empty value to disable preview window altogether
 let g:fzf_preview_window = []
-nmap <leader>f :FZF<CR>
+nmap <leader>f :FZF<CR> 
+
+
+" autocmd command
+autocmd CmdWinEnter colorscheme set completeopt=menu,menuone,preview
 
 
 
 
-" vim-prettier
+ "vim-prettier
 let g:prettier#quickfix_enabled = 1
 let g:prettier#quickfix_auto_focus = 1
 run prettier on save

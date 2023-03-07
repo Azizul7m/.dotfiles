@@ -28,8 +28,8 @@
 ;; (package! company-tabnine)
 
 ;;Ob
-
 (package!  ob-typescript)
+(package!  ob-deno)
 (package! ob-mermaid)
 
 ;;dotnet

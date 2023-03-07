@@ -78,6 +78,8 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+;; babel
+(setq org-src-tab-acts-natively t)
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 
@@ -90,23 +92,17 @@
 
 (use-package! org-roam-ui
     :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
     :config
     (setq org-roam-ui-sync-theme t
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
-;; (require 'simple-httpd)
-;; (setq httpd-root "/var/www")
-;; (httpd-start)
+;; deft
 
-;; (use-package org-roam-server
-;;   :ensure nil
-;;   :load-path "~/.org/roam/")
+(setq deft-directory "~/.org"
+      deft-extensions '("org" "txt")
+      deft-recursive t)
 
 
 ;; Journal config
@@ -116,24 +112,24 @@
       org-journal-date-format "%A, %d/%m/%Y"
       org-journal-file-format "%d-%m-%Y.org")
 
-;; Interactive Org Roam Server Graph
-
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
+;; cash memory
 (setq gc-cons-threshold (* 1024 1024 100))
 
 (after! company
-  (setq company-idle-delay 0.28)
+  (setq company-idle-delay 0)
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-minimum-prefix-length 0)
   (setq company-show-quick-access t)
   (setq company-tooltip-align-annotations t)
   (setq +lsp-company-backends '(  company-capf  :separate company-yasnippet :separate company-files  :separate company-dabbrev :separate company-wordfreq))
-  (global-company-mode 1)
 )
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp
+  :custom
+  (company-lsp-cache-candidates 'auto))
+(global-set-key (kbd "M-/") #'company-complete)
+
 
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
@@ -154,11 +150,6 @@
 ;;lsp
 (setq lsp-enable-file-watchers nil)
 
-;; Use the eglot LSP client
-;; (use-package! eglot
-;;   :after lsp-mode
-;;   :config
-;;   (setq eglot-autoreconnect nil))
 
 ;; eglot
 (after! eglot
@@ -262,48 +253,6 @@
         "http://dailynerd.nl/feed/"
         "http://rss1.smashingmagazine.com/feed/"))
 ;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
-
-;; accept completion from copilot and fallback to company
-
-;; (defun my-tab ()
-;;   (interactive)
-;;   (or (copilot-accept-completion)
-;;       (company-indent-or-complete-common nil)))
-
-;; (use-package! copilot
-;;   :hook (prog-mode . copilot-mode)
-;;   :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-;;          ("C-<tab>" . 'copilot-accept-completion-by-word)
-;;          :map company-active-map
-;;          ("<tab>" . 'my-tab)
-;;          ("TAB" . 'my-tab)
-;;          :map company-mode-map
-;;          ("<tab>" . 'my-tab)
-;;          ("TAB" . 'my-tab)))
 
 ;; TODO: heighlight config
 (use-package hl-todo
