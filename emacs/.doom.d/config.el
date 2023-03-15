@@ -122,6 +122,7 @@
   (setq company-show-quick-access t)
   (setq company-tooltip-align-annotations t)
   (setq +lsp-company-backends '(  company-capf  :separate company-yasnippet :separate company-files  :separate company-dabbrev :separate company-wordfreq))
+  (setq  company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend))
 )
 (use-package company-lsp
   :ensure t
@@ -167,6 +168,11 @@
           (css-mode . ("postcss-languageserver"))
           (html-mode . ("vscode-html-languageserver-bin")))))
 
+
+
+
+;; codium
+(use-package! codeium)
 
 ;; Latex
 (setq +latex-viewers 'nil)

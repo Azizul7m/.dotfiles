@@ -65,6 +65,11 @@
 ;;   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))
 ;;   :pin "165c62f")
 
+
+;; copilot alternative
+(straight-use-package '(codeium :type git :host github :repo "Exafunction/codeium.el"))
+
+
 ;; If you'd like to disable a package included with Doom, you can do so here
 ;; with the `:disable' property:
 ;(package! builtin-package :disable t)
