@@ -407,5 +407,13 @@ alias txt='mousepad'
 # https://github.com/anhsirk0/fetch-master-6000
 
 ### SETTING THE STARSHIP PROMPT ###
+direnv hook fish | source
 starship init fish | source
+
+# Add environment variables from ~/.env file and source them into here.
+while read -d '' line
+    set -x (echo $line | cut -d '=' -f 1) (echo $line | cut -d '=' -f 2-)
+end < "$HOME/.env"
+
+
 ## Locale

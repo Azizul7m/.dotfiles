@@ -229,3 +229,4 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 . "$HOME/.cargo/env"
+source ~/.env
