@@ -92,7 +92,6 @@ colorscheme slate
 "Random staff
 "----------------------------------------------------------------
 let g:mucomplete#enable_auto_at_startup = 1
-let g:mapleader = "\<Space>"
 
 let g:fzf_preview_window = ['right:45%', 'ctrl-/']
 
