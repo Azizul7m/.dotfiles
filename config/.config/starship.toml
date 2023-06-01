@@ -3,31 +3,10 @@ add_newline = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+success_symbol = "[➜]( green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 # scan_timeout = 10
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
-#
-format = "$all$directory$character"
-# format = "$all"
-
-[directory]
-truncation_length = 8
-truncation_symbol = "…/"
-
-
-[dotnet]
-format = "[$symbol($version )( $tfm )]($style)"
-symbol = " "
-style = "bold italic yellow"
-
-[container]
-format = "[$symbol \\[$name\\]]($style) "
-
 [deno]
 format = "via [🦕 $version](green bold) "
 

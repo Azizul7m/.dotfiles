@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/run/current-system/sw/bin/bash
 
 # If environmental variable `TERMINAL' is not set, then default terminal used: URxvt.
 
@@ -83,15 +83,16 @@ case $1 in
 
 # Open terminal in a git repo.
 -r)
+  rm -rf $HOME/.tmp/gitfiles
   mkdir -p $HOME/.tmp
-  [ -e $HOME/.tmp/gitfiles ] || find $HOME/Dev/ -regex .*/\.git$ -type d 2>/dev/null >$HOME/.tmp/gitfiles
-  REPOS="$(cat $HOME/.tmp/gitfiles | xargs dirname | sed s:/home/$USER:~: | bemenu "${COLOR[@]}" -i -l 20 -p 'Select git repo to open' --fn "$DMENU_FONT1")"
+  [ -e $HOME/.tmp/gitfiles ] || find $HOME/Repo/ -regex .*/\.git$ -type d 2>/dev/null >$HOME/.tmp/gitfiles
+  REPOS="$(cat $HOME/.tmp/gitfiles | xargs dirname | sed s:/home/$USER:~: | wofi --dmenu -i -p 'Select git repo to open' --fn "$DMENU_FONT1")"
 
   # Cut the '~/' part from the `REPOS'.
   REPOS="$(echo $REPOS | cut -d '/' -f2-)"
 
   # If user selected any repo then open `$TERMINAL' in that repo.
-  [ "$REPOS" = "" ] || { cd $HOME/$REPOS && $TERMINAL; } &
+  [ "$REPOS" = "" ] || { cd $HOME/$REPOS &&  $TERMINAL ; } &
   ;;
 
 # Manual page.
